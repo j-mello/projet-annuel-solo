@@ -1,0 +1,31 @@
+/:
+    controller: Home
+    action: default
+
+/home:
+    controller: Home
+    action: default
+
+/login:
+    controller: User
+    action: login
+
+/logout:
+    controller: User
+    action: logout
+
+/register:
+    controller: User
+    action: register
+
+/profile:
+    controller: User
+    action: default
+
+/shop:
+    controller: Shop
+    action: default
+
+/lost:
+    controller: Errors
+    action: lost
