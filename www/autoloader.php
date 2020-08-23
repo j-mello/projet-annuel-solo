@@ -2,7 +2,7 @@
 
 function myAutoloader($class)
 {
-    $class = str_replace('secret-shop', '', $class);
+    $class = str_replace('secretshop', '', $class);
 
     $class = str_replace('\\', '/', $class);
 
@@ -16,4 +16,3 @@ function myAutoloader($class)
 
 spl_autoload_register("myAutoloader");
 
- ?>
