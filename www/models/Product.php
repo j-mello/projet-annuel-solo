@@ -6,6 +6,7 @@ class Product extends Model
 {
     protected $id;
     protected $name;
+    protected $image;
     protected $formerPrice;
     protected $price;
     protected $resume;
@@ -22,6 +23,11 @@ class Product extends Model
     public function setName($name)
     {
         $this->name=strip_tags($name);
+    }
+
+    public function setImage($image)
+    {
+        $this->image=$image;
     }
 
     public function setFormerPrice($formerPrice)
@@ -59,6 +65,11 @@ class Product extends Model
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     public function getFormerPrice()

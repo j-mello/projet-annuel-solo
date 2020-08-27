@@ -51,7 +51,7 @@ class Router
         // 'controller'=> "User",
         //'action'=> "get"
         // ]
-        $c =  'HotelFactory\controllers\\'.ucfirst($routeConfig["controller"]."Controller");
+        $c =  'secretshop\controllers\\'.ucfirst($routeConfig["controller"]."Controller");
         $a =  $routeConfig["action"]."Action";
 
         try {

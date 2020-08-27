@@ -30,14 +30,14 @@ class Validator
 
     private function checkFirstname($firstname)
     {
-        if (!preg_match("#^[\p{Latin}' -]+$#u", $firstname) || count_chars($firstname) < 50)
+        if (!preg_match("#^[\p{Latin}' -]+$#u", $firstname) || strlen($firstname) > 50)
             return false;
         return true;
     }
 
     private function checkName($name)
     {
-        if (!preg_match("#^[\p{Latin}' -]+$#u", $name) || count_chars($name) < 100)
+        if (!preg_match("#^[\p{Latin}' -]+$#u", $name) || strlen($name) > 100)
             return false;
         return true;
     }
