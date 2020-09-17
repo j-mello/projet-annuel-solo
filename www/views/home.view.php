@@ -9,10 +9,10 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-					<li><a class="btn" href="signin.html">S'inscrire</a></li>
-					<li><a class="btn" href="signin.html">Se connecter</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a class="btn" href="#">S'inscrire</a></li>
+					<li><a class="btn" href="#">Se connecter</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
