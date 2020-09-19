@@ -11,6 +11,7 @@ use secretshop\mails\Mail;
 use secretshop\mails\ConfirmAccountMail;
 use secretshop\mails\ForgotPasswordMail;
 use secretshop\core\Validator;
+use secretshop\forms\LoginForm;
 use secretshop\forms\RegisterForm;
 use secretshop\managers\UserManager;
 use secretshop\models\User;
@@ -35,6 +36,45 @@ class UserController extends Controller
         $configTableUser = User::showUserTable($users);
         $myView = new View("admin/user/", "admin");
         $myView->assign("configTableUser", $configTableUser);
+    }
+
+    public function loginAction()
+    {
+        Helper::checkDisconnected();
+        $configFormUser = LoginForm::getForm();
+        $myView = new View("login", 'front');
+        $myView->assign("configFormUser", $configFormUser);
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST")
+        {
+            $validator = new Validator();
+            $errors = $validator->checkForm($configFormUser, $_POST);
+            if(empty($errors))
+            {
+                // Verification du password en le cryptant
+                $_POST['password'] = sha1($_POST['password']);
+                $userManager = new UserManager();
+                $user = $userManager->findBy($_POST);
+                if (count($user) == 1)
+                {
+                    if($user[0]->getIdRole()!= 3)
+                    {
+                        // Utilisateur trouvé et validé, on crée une session
+                        $_SESSION['id'] = $user[0]->getId();
+                        $_SESSION['role'] = $user[0]->getIdRole();
+                        $_SESSION['token'] = Token::getToken();
+                        $userManager = new UserManager();
+                        $userManager->manageUserToken($_SESSION['id'], $_SESSION['token']);
+                    } else {
+                        echo 'Merci de valider votre email afin de vous connecter';
+                    }
+                } else {
+                    echo "Identifiant ou/et mot de passe incorrect";
+                }
+            } else {
+                echo "Identifiant ou/et mot de passe incorrect";
+            }
+        }
     }
 
     public function registerAction()

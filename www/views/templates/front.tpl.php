@@ -18,11 +18,6 @@
 	<link rel="stylesheet" href="/script/css/bootstrap/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="/script/css/front/main.css">
 
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	<script src="assets/js/html5shiv.js"></script>
-	<script src="assets/js/respond.min.js"></script>
-	<![endif]-->
 </head>
 <body class='home'>
     <?php include "views/".$this->view.".view.php";?>
