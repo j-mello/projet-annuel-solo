@@ -39,6 +39,7 @@ CREATE TABLE seshop160379_category(
 CREATE TABLE seshop160379_product (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL UNIQUE,
+    slug VARCHAR(100) NOT NULL UNIQUE,
     productImage VARCHAR(250) NOT NULL UNIQUE,
     formerPrice INT NOT NULL,
     price INT NOT NULL,

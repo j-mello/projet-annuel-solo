@@ -33,7 +33,7 @@ class UserController extends Controller
         $userManager = new UserManager();
         $users = $userManager->findAll();
         $configTableUser = User::showUserTable($users);
-        $myView = new View("admin/user/list", "admin");
+        $myView = new View("admin/user/", "admin");
         $myView->assign("configTableUser", $configTableUser);
     }
 

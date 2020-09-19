@@ -2,10 +2,13 @@
 
 namespace secretshop\models;
 
+use secretshop\managers\CategoryManager;
+
 class Product extends Model
 {
     protected $id;
     protected $name;
+    protected $slug;
     protected $image;
     protected $formerPrice;
     protected $price;
@@ -23,6 +26,11 @@ class Product extends Model
     public function setName($name)
     {
         $this->name=strip_tags($name);
+    }
+
+    public function setSlug($slug)
+    {
+        $this->name=strip_tags($slug);
     }
 
     public function setImage($image)
@@ -67,6 +75,12 @@ class Product extends Model
         return $this->name;
     }
 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+
     public function getImage()
     {
         return $this->image;
@@ -95,5 +109,50 @@ class Product extends Model
     public function getIdCategory()
     {
         return $this->idCategory;
+    }
+
+    public static function showProductTable($products)
+    {
+        $categoryManager = new CategoryManager();
+        $tabProducts = [];
+
+        foreach($products as $product)
+        {
+            $category = $categoryManager->find($product->getIdCategory());
+
+            $tabProducts[] = [
+                "id" => $product->getId(),
+                "name" => $product->getName(),
+                "slug" => $product->getSlug(),
+                "image" => $product->getImage(),
+                "formerPrice" => $product->getFormerPrice(),
+                "price" => $product->getPrice(),
+                "resume" => $product->gettResume(),
+                "description" => $product->getDescription(),
+                "idCategory" => $category->getId()
+            ];
+
+        }
+
+        $tab = [
+            "colonnes"=>[
+                "Id",
+                "Name",
+                "Slug",
+                "Image",
+                "FormerPrice",
+                "Price",
+                "Resume",
+                "Description",
+                "Categorie"
+            ],
+            "fields"=>[
+                "Product"=>[]
+            ]
+        ];
+
+        $tab["fields"]["Product"] = $tabProducts;
+
+        return $tab;
     }
 }
