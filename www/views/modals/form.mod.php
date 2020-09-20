@@ -15,7 +15,17 @@ class="<?= $data["config"]["class"]?>">
 
               <?php if($configField["type"] == "captcha"): ?>
                   <img src="script/captcha.php" width="300px">
-              <?php endif;?>
+              <?php elseif ($configField["type"] == "select"):?>
+                <select 
+                name="<?= $name??'' ?>" 
+                placeholder="<?= $configField["placeholder"]??'' ?>"
+                class="<?= $configField["class"]??'' ?>"
+                id="<?= $configField["id"]??'' ?>" >
+                <?php foreach ($configField['elements'] as $element):?>
+                  <option value="<?= $element['id'] ?>"><?= $element['value'] ?></option>
+                <?php endforeach ?>
+                </select>
+              <?php else: ?>
 
             <input
                 value="<?= (isset($inputData[$name]) && $configField["type"]!="password")?$inputData[$name]:'' ?>"
@@ -25,11 +35,10 @@ class="<?= $data["config"]["class"]?>">
                 class="<?= $configField["class"]??'' ?>"
                 id="<?= $configField["id"]??'' ?>"
                 <?=(!empty($configField["required"]))?"required='required'":""?> >
+              <?php endif;?>
         </div>
       </div>
       <?php endforeach;?>
-
-
-
+      <br>
   <button class="btn btn-primary"><?= $data["config"]["submit"];?></button>
 </form>

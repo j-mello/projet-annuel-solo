@@ -31,4 +31,20 @@ class Helper
         if(!empty($_SESSION['role']))
             Helper::redirectTo("User","default");
     }
+
+    public static function checkAdmin()
+    {
+        if($_SESSION['role']!=1)
+        {
+            Helper::redirectTo("Home","default");
+        }
+    }
+
+    public static function checkGuest()
+    {
+        if($_SESSION['role']!= 1 || $_SESSION['role']!= 2)
+        {
+            Helper::redirectTo("Home", "default");
+        }
+    }
 }

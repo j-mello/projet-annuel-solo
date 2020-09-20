@@ -1,5 +1,8 @@
+<?php
+	use secretshop\core\Helper;
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
@@ -72,7 +75,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Home</a> | 
+								<a href="">Home</a> | 
 								<a href="about.html">About</a> |
 								<a href="sidebar-right.html">Sidebar</a> |
 								<a href="contact.html">Contact</a> |

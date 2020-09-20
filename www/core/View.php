@@ -12,8 +12,8 @@ class View
     {
         $this->setTemplate($template);
         $this->setView($view);
+        $this->data['toto']='toto';
     }
-
 
     public function setTemplate($t)
     {
@@ -24,7 +24,6 @@ class View
         }
     }
 
-
     public function setView($v)
     {
         $this->view = strtolower(trim($v));
@@ -33,7 +32,6 @@ class View
             die("La vue n'existe pas");
         }
     }
-
 
     public function assign($key, $value)
     {

@@ -62,6 +62,8 @@ class UserController extends Controller
                         // Utilisateur trouvé et validé, on crée une session
                         $_SESSION['id'] = $user[0]->getId();
                         $_SESSION['role'] = $user[0]->getIdRole();
+                        $_SESSION['name'] = $user[0]->getName();
+                        $_SESSION['firstname'] = $user[0]->getFirstName();
                         $_SESSION['token'] = Token::getToken();
                         $userManager = new UserManager();
                         $userManager->manageUserToken($_SESSION['id'], $_SESSION['token']);
@@ -129,7 +131,7 @@ class UserController extends Controller
                     }
                 } else {
                     die("Le lien n'est pas valide.");
-                } else {
+                }
                     if (!empty($_SESSION["newUser"]) && $_SESSION["newUser"] == 1)
                     {
                         //acces à la page sans parametres (juste apres l'inscription quand l'email n'est pas encore validé)
@@ -140,8 +142,7 @@ class UserController extends Controller
                         unset($_SESSION["newUser"]);
                     } else {
                         $this->redirectTo("Errors","lost");
-                    }
-                }
+            }
         } 
     }
 

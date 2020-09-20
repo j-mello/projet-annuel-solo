@@ -3,9 +3,11 @@
 namespace secretshop\forms;
 use secretshop\core\Helper;
 
-class RegisterForm {
+class RegisterForm 
+{
 
-    public static function getForm(){
+    public static function getForm()
+    {
         return [
             "config"=>[
                 "method"=>"POST",

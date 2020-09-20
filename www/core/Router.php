@@ -40,7 +40,7 @@ class Router
                 return;
             }
         }
-        header('Location: '.Helper::getUrl("Errors","quatreCentQuatre"));
+        //header('Location: '.Helper::getUrl("Errors","quatreCentQuatre"));
         die("L'url n'existe pas : Erreur 404");
 
     }
@@ -53,11 +53,9 @@ class Router
         // ]
         $c =  'secretshop\controllers\\'.ucfirst($routeConfig["controller"]."Controller");
         $a =  $routeConfig["action"]."Action";
-
         try {
             $controller = new $c();
         } catch( \Throwable $t) {
-
             die("Le fichier controller n'existe pas");
         }
 
@@ -66,7 +64,6 @@ class Router
         if (method_exists($controller, $a)) {
             //$c->$a()
             $this->loadAutoWiringClass($c, $controller, $a);
-
         } else {
 
             die("L'action n'existe pas");
@@ -95,7 +92,7 @@ class Router
         $params = $reflection->getParameters();
 
         $paramsToLaunch = [];
-        for( $i = 0; $i <count($params); $i++)
+        for($i = 0; $i <count($params); $i++)
         {
             $param =  $params[$i]->getType()->getName();
             // $i = 0

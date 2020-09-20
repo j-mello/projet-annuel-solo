@@ -6,6 +6,22 @@
     controller: Home
     action: default
 
+/admin:
+    controller: Admin 
+    action: default
+
+/admin/add-category:
+    controller: Admin
+    action: addCategory
+
+/admin/new-category:
+    controller: Category 
+    action: add
+
+/admin/add-product:
+    controller: Admin
+    action: addProduct
+
 /login:
     controller: User
     action: login
@@ -29,7 +45,3 @@
 /lost:
     controller: Errors
     action: lost
-
-/admin:
-    controller: Admin
-    action: default
