@@ -79,6 +79,11 @@ class Validator
         if(is_numeric($price)) return true;
     }
 
+    private function checkCategory($category)
+    {
+        return preg_match('#^[A-Z][a-zA-Z\s]{3,30}#',$category);
+    }
+
     private function uniq($data,$table)
     {
         $requete = new QueryBuilder(User::class, $table["table"]);

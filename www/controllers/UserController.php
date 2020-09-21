@@ -15,6 +15,7 @@ use secretshop\forms\LoginForm;
 use secretshop\forms\RegisterForm;
 use secretshop\managers\UserManager;
 use secretshop\models\User;
+use secretshop\core\View;
 
 class UserController extends Controller
 {
@@ -25,7 +26,7 @@ class UserController extends Controller
         $userManager = new UserManager();
         $user = $userManager->findBy($id);
         $configFormUser = User::showUserTable($user);
-        $myView = new View("profile", "shop");
+        $myView = new View("shop/profile", "shop");
         $myView->assign('configFormUser', $configFormUser);
     }
 

@@ -6,6 +6,10 @@
     controller: Home
     action: default
 
+/home/mail:
+    controller: Home
+    action: email
+
 /admin:
     controller: Admin 
     action: default
@@ -21,6 +25,10 @@
 /admin/add-product:
     controller: Admin
     action: addProduct
+
+/admin/new-product:
+    controller: Product 
+    action: add
 
 /login:
     controller: User

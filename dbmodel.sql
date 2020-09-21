@@ -50,7 +50,36 @@ CREATE TABLE seshop160379_product (
 
 );
 
+-- Structure de la table cart
+
+CREATE TABLE seshop160379_cart (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idClient INT NOT NULL,
+    FOREIGN KEY (idClient) REFERENCES seshop160379_user(id)
+)
+
+-- Structure de la table cart_product
+
+CREATE TABLE seshop160379_cart_product (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idProduct INT NOT NULL,
+    
+)
+
+-- Structure de la table mail
+
+CREATE TABLE seshop160379_mail (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100) NOT NULL
+)
+
 INSERT INTO seshop160379_role (`id`, `role`) VALUES
 (1, 'admin'),
 (2, 'user'),
 (3, 'inactive');
+
+INSERT INTO seshop160379_category (`id`, `category`) VALUES
+(1, 'Chaussures Homme'),
+(2, 'Mode Homme'),
+(3, 'Chaussures Femme'),
+(4, 'Mode Femme');

@@ -1,44 +1,22 @@
 
-<!-- Fixed navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top headroom" >
-		<div class="container">
-			<div class="navbar-header">
-				<!-- Button for smallest screens -->
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="index.html"><img src="/script/images/front/logo.png" alt="Progressus HTML5 template"></a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
-					<li><a class="btn" href="#">S'inscrire</a></li>
-					<li><a class="btn" href="#">Se connecter</a></li>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</div> 
-	<!-- /.navbar -->
-
 	<!-- Header -->
-	<header id="head">
-		<div class="container">
-			<div class="row">
-				<h1 class="lead">SECRET SHOP, LES OFFRES SECRETES</h1>
-				<p class="tagline">Des offres uniques</p>
-				<p><a class="btn btn-default btn-lg" role="button">S'inscrire</a> <a class="btn btn-action btn-lg" role="button">Se connecter</a></p>
+	<section id="head">
+		<div>
+			<div class="d-flex flex-column text-center">
+				<h1 class="p-2">SECRET SHOP, LES OFFRES SECRETES</h1><br><br>
+				<p class="p-2">Des offres uniques</p> <br>
+				<p class="p-2"><a class="btn btn-warning" role="button">S'inscrire</a> <a class="btn btn-dark" role="button">Se connecter</a></p>
 			</div>
 		</div>
-	</header>
+	</section>
 	<!-- /Header -->
 
 	<!-- Intro -->
 	<div class="container text-center">
 		<br> <br>
-		<h2 class="thin">The best place to tell people why they are here</h2>
+		<h2 class="thin">Le meilleur endroit pour bénéficier de prix cassés sur des produits !</h2>
 		<p class="text-muted">
-			The difference between involvement and commitment is like an eggs-and-ham breakfast:<br> 
-			the chicken was involved; the pig was committed.
+			Des offres pour tous : <br> homme, femme et enfant !
 		</p>
 	</div>
 	<!-- /Intro-->

@@ -16,7 +16,7 @@ class Category extends Model
     
         public function setCategory($category)
         {
-            $this->category=$category;
+            $this->category=htmlspecialchars($category);
         }
     
         /* Getters */
