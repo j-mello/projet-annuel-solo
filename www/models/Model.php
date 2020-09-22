@@ -10,14 +10,21 @@ class Model
         return $property;
     }
 
-    public function hydrate(array $data)
+    public function hydrate($data, $files = [])
     {
-        //print_r($data);
+        /*echo "hydrate =>";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+        echo "<pre>";
+        print_r($files);
+        echo "</pre>";*/
         $className = get_class($this);
         //echo '<br>'.$className.'<br>';
         $articleObj = new $className;
         //print_r($articleObj);
         //print_r($data);
+        //die("HYDRATE");
 
         foreach ($data as $key => $value)
         {
@@ -26,6 +33,29 @@ class Model
             if (method_exists($articleObj, $method))
             {
                 $articleObj->$method($value);
+            }
+        }
+        foreach($files as $key => $config) {
+            $path = "uploads/";
+            $name = $_FILES[$key]["name"];
+            $ext = ".".explode(".",$name)[count(explode(".",$name))-1];
+            $fileName = explode(".",$name)[0];
+            $nb = "";
+            while (file_exists($path.$fileName.$nb.$ext)) {
+                if ($nb == "") {
+                    $nb = 2;
+                } else {
+                    $nb += 1;
+                }
+            }
+            if (!move_uploaded_file($_FILES[$key]["tmp_name"], $path.$fileName.$nb.$ext)) {
+                die ("Echec de l'upload");
+            }
+            $method = 'set'.ucfirst($key);
+            //echo '<br>'.$method;
+            if (method_exists($articleObj, $method))
+            {
+                $articleObj->$method("/".$path.$fileName.$nb.$ext);
             }
         }
         return $articleObj;

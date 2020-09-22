@@ -7,6 +7,8 @@ use secretshop\core\View;
 use secretshop\forms\CategoryAddForm;
 use secretshop\forms\ProductAddForm;
 use secretshop\managers\CategoryManager;
+use secretshop\managers\UserManager;
+use secretshop\models\User;
 
 class AdminController extends Controller
 {
@@ -25,9 +27,9 @@ class AdminController extends Controller
     public function addProductAction()
     {
         $categoriesManager = new CategoryManager();
-        $categories = $categoriesManager->findAll();
+        $categories = $categoriesManager->getSelect();
         $configFormProduct = ProductAddForm::getForm($categories);
-        $myView = new View('admin/addProduct', 'admin');
+        $myView = new View('admin/addproduct', 'admin');
         $myView ->assign("configFormProduct", $configFormProduct);
     }
 
@@ -38,7 +40,14 @@ class AdminController extends Controller
 
     public function listUserAction()
     {
-        echo 'Coucou';
+        $userManager = new UserManager();
+        $users = $userManager->findAll();
+        $configTableUser = User::showUserTable($users);
+        /*echo '<pre>';
+        print_r($configTableUser);
+        echo '</pre>';*/
+        $myView = new View('admin/listuser','admin');
+        $myView->assign("configTableUser", $configTableUser);
     }
 
 }

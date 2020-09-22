@@ -18,26 +18,6 @@ class RegisterForm
             ],
 
             "fields"=>[
-                "firstname"=>[
-                    "type"=>"text",
-                    "placeholder"=>"Votre prénom",
-                    "class"=>"form-control form-control-user",
-                    "id"=>"",
-                    "required"=>true,
-                    "min-length"=>2,
-                    "max-length"=>50,
-                    "errorMsg"=>"Votre prénom doit faire entre 1 et 50 caractères et ne doit pas contenir de caractères spéciaux ni de nombres"
-                ],
-                "name"=>[
-                    "type"=>"text",
-                    "placeholder"=>"Votre nom",
-                    "class"=>"form-control form-control-user",
-                    "id"=>"",
-                    "required"=>true,
-                    "min-length"=>2,
-                    "max-length"=>100,
-                    "errorMsg"=>"Votre nom doit faire entre 1 et 100 caractères et ne doit pas contenir de caractères spéciaux ni de nombres"
-                ],
                 "email"=>[
                     "type"=>"email",
                     "placeholder"=>"Votre email",
@@ -63,6 +43,16 @@ class RegisterForm
                     "required"=>true,
                     "confirmWith"=>"pwd",
                     "errorMsg"=>"Votre mot de passe de confirmation ne correspond pas"
+                ],
+                "prenom"=>[
+                    "type"=>"text",
+                    "placeholder"=>"Votre prénom",
+                    "class"=>"form-control form-control-user",
+                    "id"=>"",
+                    "required"=>true,
+                    "min-length"=>2,
+                    "max-length"=>50,
+                    "errorMsg"=>"Votre prénom doit faire entre 1 et 50 caractères et ne doit pas contenir de caractères spéciaux ni de nombres"
                 ],
                 "captcha"=>[
                     "type"=>"captcha",

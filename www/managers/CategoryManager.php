@@ -11,4 +11,13 @@ class CategoryManager extends Manager
     {
         parent::__construct(Category::class, 'category');
     }
+
+    public function getSelect() {
+        $categories = $this->findAll();
+        $categorieSelect = [];
+        foreach($categories as $categorie) {
+            $categorieSelect[] = ['id' => $categorie->getId(), 'value' => $categorie->getCategory()];
+        }
+        return $categorieSelect;
+    }
 }

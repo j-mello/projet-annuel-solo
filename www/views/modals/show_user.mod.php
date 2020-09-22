@@ -1,5 +1,6 @@
 <?php
 
+use secretshop\core\Helper;
 use secretshop\managers\RoleManager;
 use secretshop\models\User;
 
@@ -16,7 +17,7 @@ use secretshop\models\User;
     <?php foreach ($data["fields"] as $categorie => $elements):?>
         <?php foreach ($elements as $key => $fields): ?>
             <form method="post"
-                  action="/profile/update"
+                  action="<?= Helper::getUrl('Admin', 'listuser') ?>"
                   id="<?= $data["config"]["id"] ?>"
                   class="<?= $data["config"]["class"] ?>">
                 <tr>
@@ -24,11 +25,10 @@ use secretshop\models\User;
                         $user = new User();
                         $roleManager = new RoleManager();
                         $user = $user->hydrate($fields);
-                        $role = $roleManager->find($user->getIdHfRole());?>
-
+                        $role = $roleManager->find($user->getIdRole());?>
                     <?php if($key == 'id'):?>
                         <td><input hidden="hidden" type="number" value="<?= $fields[$key] ?>" name="<?= $key ?>"/></td>
-                    <?php elseif($key == 'idHfRole'): ?>
+                    <?php elseif($key == 'idRole'): ?>
                         <td><?= $role->getCaption(); ?></td>
                     <?php elseif($key == 'creationDate'): ?>
                         <td><?= $fields[$key] ?></td>

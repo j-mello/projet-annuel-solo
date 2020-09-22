@@ -9,8 +9,7 @@ class User extends Model
     protected $id;
     protected $email;
     protected $password;
-    protected $name;
-    protected $firstname;
+    protected $prenom;
     protected $creationDate;
     protected $idRole;
     protected $token;
@@ -29,18 +28,12 @@ class User extends Model
 
     public function setPassword($password)
     {
-        $this->password=md5($password);
-        $this->password=sha1($password);
+        $this->password=strip_tags(sha1($password));
     }
 
-    public function setName($name)
+    public function setPrenom($prenom)
     {
-        $this->name=strtoupper(strip_tags($name));
-    }
-
-    public function setFirstname($firstname)
-    {
-        $this->firstname=ucfirst(strtolower(strip_tags($firstname)));    
+        $this->name=strtoupper(strip_tags($prenom));
     }
 
     public function setCreationDate($creationDate)
@@ -75,14 +68,9 @@ class User extends Model
         return $this->password;
     }
 
-    public function getName()
+    public function getPrenom()
     {
-        return $this->name;
-    }
-
-    public function getFirstname()
-    {
-        return $this->firstname;
+        return $this->prenom;
     }
 
     public function getCreationDate()
@@ -111,9 +99,8 @@ class User extends Model
 
             $tabUsers[] = [
                 "id" => $user->getId(),
-                "name" => $user->getName(),
-                "firstname" => $user->getFirstname(),
                 "email" => $user->getEmail(),
+                "prenom" => $user->getPrenom(),
                 "creationDate" => $user->getCreationDate(),
                 "idRole" => $role->getId()
             ];
@@ -122,7 +109,6 @@ class User extends Model
         $tab = [
             "colonnes"=>[
                 "Id",
-                "Nom",
                 "Prénom",
                 "Email",
                 "Date de création",

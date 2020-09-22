@@ -9,7 +9,7 @@ class Product extends Model
     protected $id;
     protected $name;
     protected $slug;
-    protected $image;
+    protected $productImage;
     protected $formerPrice;
     protected $price;
     protected $resume;
@@ -30,12 +30,7 @@ class Product extends Model
 
     public function setSlug($slug)
     {
-        $this->name=strip_tags($slug);
-    }
-
-    public function setImage($image)
-    {
-        $this->image=$image;
+        $this->slug=strip_tags($slug);
     }
 
     public function setFormerPrice($formerPrice)
@@ -63,6 +58,11 @@ class Product extends Model
         $this->idCategory=$idCategory;
     }
 
+    public function setProductImage($productImage)
+    {
+        $this->productImage=$productImage;
+    }
+
     /* Getters */
 
     public function getId()
@@ -78,12 +78,6 @@ class Product extends Model
     public function getSlug()
     {
         return $this->slug;
-    }
-
-
-    public function getImage()
-    {
-        return $this->image;
     }
 
     public function getFormerPrice()
@@ -109,6 +103,11 @@ class Product extends Model
     public function getIdCategory()
     {
         return $this->idCategory;
+    }
+
+    public function getProductImage()
+    {
+        return $this->productImage;
     }
 
     public static function showProductTable($products)

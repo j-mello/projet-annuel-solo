@@ -12,7 +12,7 @@ class View
     {
         $this->setTemplate($template);
         $this->setView($view);
-        $this->data['toto']='toto';
+        $this->data[] = [];
     }
 
     public function setTemplate($t)
@@ -45,7 +45,6 @@ class View
         {
             die("Le modal n'existe pas!");
         }
-
         include "views/modals/".$modal.".mod.php";
     }
 

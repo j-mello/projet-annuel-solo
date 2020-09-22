@@ -14,6 +14,7 @@ class ProductAddForm {
                 "class"=>"Product",
                 "id"=>"",
                 "submit"=>"Ajoutez le produit",
+                "enctype"=>"multipart/form-data"
             ],
 
             "fields"=>[
@@ -36,15 +37,6 @@ class ProductAddForm {
                     "min-length"=>2,
                     "max-length"=>50,
                     "errorMsg"=>"L'adresse ne doit pas comprendre d'espace et de caractères spéciaux."
-                ],
-                "image"=>[
-                    "type"=>"file",
-                    "placeholder"=>"Image du produit :",
-                    "class"=>"form-control",
-                    "id"=>"",
-                    "accept"=>".jpeg,.jpg,.png",
-                    "required"=>true,
-                    "errorMsg"=>"Le fichier ne correspond à une image de type jpeg ou png."
                 ],
                 "formerPrice"=>[
                     "type"=>"number",
@@ -81,12 +73,21 @@ class ProductAddForm {
                     "min-lenght"=>3,
                     "errorMsg"=>"Veuillez rééssayer, la description n'a pas pu être enregistrée"
                 ],
-                "category"=>[
+                "idCategory"=>[
                     "type"=>"select",
                     "placeholder"=>"Sélectionnez la catégorie :",
                     "elements"=>$categories,
                     "id"=>"",
                     "errorMsg"=>"Mauvaise catégorie sélectionnée"
+                ],
+                "productImage"=>[
+                    "type"=>"file",
+                    "placeholder"=>"Image du produit :",
+                    "class"=>"form-control",
+                    "id"=>"",
+                    "accept"=>"image/jpeg,image/jpg,image/png",
+                    "required"=>true,
+                    "errorMsg"=>"Le fichier ne correspond à une image de type jpeg ou png."
                 ],
             ]
         ];

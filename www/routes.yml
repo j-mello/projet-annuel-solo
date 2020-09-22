@@ -1,3 +1,4 @@
+# Acces aux pages de base
 /:
     controller: Home
     action: default
@@ -6,11 +7,17 @@
     controller: Home
     action: default
 
+#Inscription newsletter
 /home/mail:
     controller: Home
     action: email
 
+#Panel admin
 /admin:
+    controller: Admin 
+    action: default
+
+/admin/:
     controller: Admin 
     action: default
 

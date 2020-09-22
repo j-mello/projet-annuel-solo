@@ -17,10 +17,25 @@ class Validator
                 if (!array_key_exists($key, $data) || ($config["required"] && empty($data[$key]))) {
                     return ["Tentative de hack !!!"];
                 }
-                $method = 'check' . ucfirst($key);
-                if (method_exists(get_called_class(), $method)) {
-                    if (!$this->$method($data[$key], $config)) {
+                if ($config["type"] == "select") {
+                    $found = false;
+                    foreach($config["elements"] as $element) {
+                        if ($element["id"] == $data[$key]) {
+                            $found = true;
+                            break;
+                        }
+                    }
+                    if (!$found) {
                         $errosMsg[$key] = $config["errorMsg"];
+                    }
+                } else {
+                    $method = 'check' . ucfirst($key);
+                    echo "method => ".$method."<br/>";
+                    if (method_exists(get_called_class(), $method)) {
+                        if (!$this->$method($data[$key], $config)) {
+                            echo "return false<br/>";
+                            $errosMsg[$key] = $config["errorMsg"];
+                        }
                     }
                 }
             }
@@ -74,14 +89,26 @@ class Validator
         return $date >= $birthdate;
     }
 
+    private function checkFormerPrice($formerPrice)
+    {
+        return (is_numeric($formerPrice));
+    }
+
     private function checkPrice($price)
     {
-        if(is_numeric($price)) return true;
+        return (is_numeric($price));
     }
 
     private function checkCategory($category)
     {
         return preg_match('#^[A-Z][a-zA-Z\s]{3,30}#',$category);
+    }
+
+    private function checkProductImage($productImage)
+    {
+        $imageFileType = strtolower(pathinfo($productImage,PATHINFO_EXTENSION));
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg")
+            return false;
     }
 
     private function uniq($data,$table)

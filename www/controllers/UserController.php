@@ -21,6 +21,10 @@ use secretshop\core\View;
 
 class UserController extends Controller
 {
+    public function defaultAction()
+    {
+        echo 'Bouh !';
+    }
     
     public function indexAction()
     {
@@ -64,9 +68,8 @@ class UserController extends Controller
                     {
                         // Utilisateur trouvé et validé, on crée une session
                         $_SESSION['id'] = $user[0]->getId();
-                        $_SESSION['role'] = $user[0]->getIdRole();
-                        $_SESSION['name'] = $user[0]->getName();
-                        $_SESSION['firstname'] = $user[0]->getFirstName();
+                        $_SESSION['idRole'] = $user[0]->getIdRole();
+                        $_SESSION['prenom'] = $user[0]->getPrenom();
                         $_SESSION['token'] = Token::getToken();
                         $userManager = new UserManager();
                         $userManager->manageUserToken($_SESSION['id'], $_SESSION['token']);
@@ -74,7 +77,7 @@ class UserController extends Controller
                         echo 'Merci de valider votre email afin de vous connecter';
                     }
                 } else {
-                    echo "Identifiant ou/et mot de passe incorrect";
+                    echo 'Veuillez valider votre mail';
                 }
             } else {
                 echo "Identifiant ou/et mot de passe incorrect";

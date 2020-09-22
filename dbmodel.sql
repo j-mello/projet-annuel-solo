@@ -20,7 +20,8 @@ CREATE TABLE seshop160379_role(
 CREATE TABLE seshop160379_user (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(80) NOT NULL,
+    password TEXT NOT NULL,
+    prenom VARCHAR (30) NOT NULL,
     idRole INT NOT NULL,
     creationDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     token VARCHAR (255) DEFAULT NULL,
@@ -40,12 +41,12 @@ CREATE TABLE seshop160379_product (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL UNIQUE,
     slug VARCHAR(100) NOT NULL UNIQUE,
-    productImage VARCHAR(250) NOT NULL UNIQUE,
     formerPrice INT NOT NULL,
     price INT NOT NULL,
     resume VARCHAR(250) NOT NULL,
     description TEXT NOT NULL,
     idCategory INT NOT NULL,
+    productImage VARCHAR(250) NOT NULL UNIQUE,
     FOREIGN KEY (idCategory) REFERENCES seshop160379_category(id)
 
 );
@@ -83,3 +84,7 @@ INSERT INTO seshop160379_category (`id`, `category`) VALUES
 (2, 'Mode Homme'),
 (3, 'Chaussures Femme'),
 (4, 'Mode Femme');
+
+INSERT INTO seshop160379_user (`id`, `email`, `password`, `prenom`, `idRole`) VALUES
+(1, 'admin@admin.fr', '2ec10e4f7cd2159e7ea65d2454f68287ecf81251','admin', 1), -- Admin1
+(2, 'client@client.fr', 'd409bafbde368de4a06b71e2f3397f3ba0da0d0d','client', 2); -- Client1

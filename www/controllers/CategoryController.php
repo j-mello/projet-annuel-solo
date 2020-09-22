@@ -21,7 +21,7 @@ class CategoryController extends Controller
             $errors = $validator->checkForm($configFormAddCategory, $_POST);
             if (empty($errors))
             {
-                $categoryArray = array($_POST);
+                $categoryArray = $_POST;
                 $category = new Category();
                 $category = $category->hydrate($categoryArray);
                 $categoryManager = new CategoryManager();

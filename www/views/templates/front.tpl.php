@@ -54,18 +54,23 @@
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'default') ?>">Home</a></li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Boutique</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="category.html">La boutique</a></li>
-									<li class="nav-item"><a class="nav-link" href="cart.html">Mon panier</a></li>
-								</ul>
-							</li>
 							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'login') ?>">Login</a></li>
 							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'register') ?>">Inscription</a></li>
-							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'logout') ?>">Logout</a></li>
-							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Admin', 'default') ?>">Admin</a></li>
+
+							<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 2 || $_SESSION['idRole'] == 3)): ?>
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+									aria-expanded="false">Boutique</a>
+									<ul class="dropdown-menu">
+										<li class="nav-item"><a class="nav-link" href="category.html">La boutique</a></li>
+										<li class="nav-item"><a class="nav-link" href="cart.html">Mon panier</a></li>
+									</ul>
+								</li>
+								<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'logout') ?>">Logout</a></li>
+								<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 3)): ?>
+									<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Admin', 'default') ?>">Admin</a></li>
+								<?php endif; ?>
+							<?php endif; ?>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
