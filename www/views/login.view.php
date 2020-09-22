@@ -1,10 +1,14 @@
 <h1> Connexion </h1>
 
+<div class='container-fluid'>
 <?php
 $this->addModal("form", $configFormUser); 
 ?>
+</div>
+
 
 </br>
-<a href="#">Mot de passe oublié</a>
+<a href="#" class='btn btn-primary justify-content-center'>Mot de passe oublié</a>
 </br></br>
-<a href="#">Retour à l'accueil</a>
+<a href="#" class='btn btn-primary justify-content-center'>Retour à l'accueil</a>
+<br>

@@ -30,4 +30,15 @@ class AdminController extends Controller
         $myView = new View('admin/addProduct', 'admin');
         $myView ->assign("configFormProduct", $configFormProduct);
     }
+
+    public function deleteProductAction()
+    {
+        echo 'Voilà';
+    }
+
+    public function listUserAction()
+    {
+        echo 'Coucou';
+    }
+
 }

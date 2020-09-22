@@ -12,7 +12,7 @@ class RegisterForm
             "config"=>[
                 "method"=>"POST",
                 "action"=>Helper::getUrl("User", "register"),
-                "class"=>"User",
+                "class"=>"justify-content-center",
                 "id"=>"formRegisterUser",
                 "submit"=>"S'inscrire"
             ],

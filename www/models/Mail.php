@@ -14,7 +14,7 @@ class Mail extends Model
         $this->id=$id;
     }
 
-    public function setMail($email)
+    public function setEmail($email)
     {
         $this->email=htmlspecialchars($email);
     }
@@ -26,7 +26,7 @@ class Mail extends Model
         return $this->id;
     }
 
-    public function getMail()
+    public function getEmail()
     {
         return $this->mail;
     }

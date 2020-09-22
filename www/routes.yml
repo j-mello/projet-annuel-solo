@@ -14,6 +14,10 @@
     controller: Admin 
     action: default
 
+/admin/user-list:
+    controller: Admin
+    action: listUser
+
 /admin/add-category:
     controller: Admin
     action: addCategory
@@ -30,6 +34,10 @@
     controller: Product 
     action: add
 
+/admin/delete-product:
+    controller: Admin
+    action: deleteProduct
+
 /login:
     controller: User
     action: login
@@ -39,8 +47,20 @@
     action: logout
 
 /register:
+    controller: Home
+    action: register
+
+/suscribe:
     controller: User
     action: register
+
+/forgot-password:
+    controller: User
+    action: password
+
+/reset-password:
+    controller: User
+    action: newPassword
 
 /profile:
     controller: User

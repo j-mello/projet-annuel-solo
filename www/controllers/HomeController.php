@@ -6,6 +6,7 @@ use secretshop\core\Controller;
 use secretshop\core\Validator;
 use secretshop\core\View;
 use secretshop\forms\MailForm;
+use secretshop\forms\RegisterForm;
 use secretshop\managers\MailManager;
 use secretshop\models\Mail;
 
@@ -18,6 +19,13 @@ class HomeController extends Controller
         $myView->assign("configFormMail", $configFormMail);
     }
 
+    public function registerAction()
+    {
+        $configFormRegister = RegisterForm::getForm();
+        $myView = new View('register', 'front');
+        $myView->assign("configFormRegister", $configFormRegister);
+    }
+
     public function emailAction()
     {
         $configFormMail = MailForm::getForm();
@@ -27,12 +35,18 @@ class HomeController extends Controller
             $errors = $validator->checkForm($configFormMail, $_POST);
             if(empty($errors))
             {
-                $mailArray = array($_POST);
+                $mailArray = $_POST;
+                //var_dump($mailArray);
+                //echo '<br>';
+                //echo $mailArray['email'];
+                //echo '<br>';
                 $mail = new Mail();
                 $mail = $mail->hydrate($mailArray);
+                //var_dump($mail);
                 $mailManager = new MailManager();
                 $mailManager->save($mail);
             }
+            $this->redirectTo('Home','default');
         }
     }
 }

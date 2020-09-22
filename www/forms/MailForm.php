@@ -23,7 +23,6 @@ class MailForm
                     "class"=>"form-control form-control-user",
                     "id"=>"",
                     "required"=>true,
-                    "uniq"=>["table"=>"user","column"=>"email"],
                     "errorMsg"=>"Adresse mail invalide"
                 ],
             ]

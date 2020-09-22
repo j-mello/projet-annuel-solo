@@ -1,3 +1,9 @@
+<?php
+
+use secretshop\core\Helper;
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -26,13 +32,13 @@
       <div class="sidebar">
         <nav>
           <ul>
-            <li>Utilisateurs</li>
-            <li>Ajout produit</li>
-            <li>Supprimez produit</li>
-            <li>Ajout catégorie</li>
+            <li><a href="<?= Helper::getUrl('Admin', 'listUser') ?>"  class="linkDashboard "><i class="fas fa-columns"></i>Utilisateurs</a></li></li>
+            <li><a href="<?= Helper::getUrl('Admin', 'addProduct') ?>"  class="linkDashboard "><i class="fas fa-columns"></i>Ajout produit</li>
+            <li><a href="<?= Helper::getUrl('Admin', 'deleteProduct') ?>" class="linkDashboard "><i class="fas fa-columns"></i>Supprimez produit</li>
+            <li><a href="<?= Helper::getUrl('Admin', 'addCategory') ?>"  class="linkDashboard "><i class="fas fa-columns"></i>Ajout catégorie</li>
           </ul>
           <ul>
-            <li><a id="button-logout" href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+            <li><a id="button-logout" href="<?= Helper::getUrl('Home','default') ?>"><i class="fas fa-sign-out-alt"></i></a></li>
           </ul>
         </nav>
 

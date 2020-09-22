@@ -12,7 +12,7 @@ class ProductAddForm {
                 "method"=>"POST",
                 "action"=>Helper::getUrl("Product", "add"),
                 "class"=>"Product",
-                "id"=>"formRegisterProduct",
+                "id"=>"",
                 "submit"=>"Ajoutez le produit",
             ],
 

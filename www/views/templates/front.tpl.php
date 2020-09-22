@@ -62,9 +62,9 @@
 									<li class="nav-item"><a class="nav-link" href="cart.html">Mon panier</a></li>
 								</ul>
 							</li>
-							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'default') ?>">Login</a></li>
-							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'default') ?>">Inscription</a></li>
-							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'default') ?>">Logout</a></li>
+							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'login') ?>">Login</a></li>
+							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'register') ?>">Inscription</a></li>
+							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'logout') ?>">Logout</a></li>
 							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Admin', 'default') ?>">Admin</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">

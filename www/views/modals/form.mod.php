@@ -14,6 +14,15 @@ class="<?= $data["config"]["class"]?>">
           <div class="col-sm-12">
 
               <?php if($configField["type"] == "captcha"): ?>
+                <input
+                value="<?= (isset($inputData[$name]) && $configField["type"]!="password")?$inputData[$name]:'' ?>"
+                type="<?= $configField["type"]??'' ?>"
+                name="<?= $name??'' ?>"
+                placeholder="<?= $configField["placeholder"]??'' ?>"
+                class="<?= $configField["class"]??'' ?>"
+                id="<?= $configField["id"]??'' ?>"
+                <?=(!empty($configField["required"]))?"required='required'":""?> >
+                <br>
                   <img src="script/captcha.php" width="300px">
               <?php elseif ($configField["type"] == "select"):?>
                 <select 

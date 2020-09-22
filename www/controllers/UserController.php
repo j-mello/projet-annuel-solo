@@ -13,6 +13,8 @@ use secretshop\mails\ForgotPasswordMail;
 use secretshop\core\Validator;
 use secretshop\forms\LoginForm;
 use secretshop\forms\RegisterForm;
+use secretshop\forms\NewPasswordForm;
+use secretshop\forms\ForgotPasswordForm;
 use secretshop\managers\UserManager;
 use secretshop\models\User;
 use secretshop\core\View;
@@ -163,5 +165,113 @@ class UserController extends Controller
         $mail = new Mail();
         $mail->sendMail($configMail);
 
+    }
+
+    public function forgotPasswordAction()
+    {
+        Helper::checkDisconnected();
+        $configFormUser = ForgotPasswordForm::getForm();
+        $myView = new View("forgot_password", "front");
+        $myView->assign("configFormUser", $configFormUser);
+
+        if($_SERVER["REQUEST_METHOD"] == "POST")
+        {
+            $validator = new Validator();
+            $errors = $validator->checkForm($configFormUser, $_POST);
+            if (empty($errors))
+            {
+                $requete = new QueryBuilder(User::class, 'user');
+                $requete->querySelect(["id"]);
+                $requete->queryWhere("email", "=", $_POST['email']);
+                $result = $requete->queryGget();
+                if (!empty($result))
+                {
+
+                    $token = Token::getToken();
+                    $userManager = new UserManager();
+                    $userManager->manageUserToken($result["id"],$token);
+                    $url = URL_HOST.Helper::getUrl("User","newPassword")."?id=".urlencode($result["id"])."&token=".urlencode($token);
+                    $configMail = ForgotPasswordMail::getMail($_POST['email'],$url);
+                    $mail = new Mail();
+                    $mail->sendMail($configMail);
+                }
+            }
+            else
+                print_r($errors);
+        }
+    }
+    public function newPasswordAction()
+    {
+        Helper::checkDisconnected();
+        $configFormUser = NewPasswordForm::getForm();
+        if(!empty($_GET['id']) && !empty($_GET['token']))
+        {
+            $requete = new QueryBuilder(User::class, 'user');
+            $requete->querySelect(["id"]);
+            $requete->queryWhere("id", "=", htmlspecialchars(urldecode($_GET['id'])));
+            $requete->queryWhere("token", "=", htmlspecialchars(urldecode($_GET['token'])));
+            $result = $requete->queryGget();
+            if (!empty($result))
+            {
+                $myView = new View("new_password", "front");
+                $myView->assign("configFormUser", $configFormUser);
+                $userManager = new UserManager();
+                $userManager->manageUserToken($result["id"],0);
+                $_SESSION["idPassword"] = $result["id"];
+            }
+            else
+            {
+                $message = Message::linkNoValid();
+                $view = new View("message", "front");
+                $view->assign("message",$message);
+            }
+        }
+        else
+        {
+            if(empty($_SESSION["idPassword"]))
+                die("erreurs");
+        }
+
+        if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_SESSION["idPassword"]))
+        {
+            $validator = new Validator();
+            $errors = $validator->checkForm($configFormUser, $_POST);
+            if (empty($errors))
+            {
+                $user = new User();
+                $user->setPassword($_POST["password"]);
+                $user->setId($_SESSION["idPassword"]);
+                $userManager = new UserManager();
+                $userManager->save($user);
+                unset($_SESSION["idPassword"]);
+                $message = message::newPasswordSucess();
+                $view = new View("message", "front");
+                $view->assign("message",$message);
+            }
+            else
+            {
+                print_r($errors);
+                $myView = new View("newPassword", "front");
+                $myView->assign("configFormUser", $configFormUser);
+            }
+        }
+    }
+
+    public function deleteAction()
+    {
+        //la supression du compte d'un utilisateur désactive le compte et le déconnecte
+        if(!empty($_SESSION["id"]))
+        {
+            $userManager = new UserManager();
+            $userManager->manageUserToken($_SESSION['id'],0,["idRole"=>3]);
+            session_destroy();
+            $this->redirectTo("Home","default");
+        }
+        //la suppresion de compte par un admin permet de supprimer le compte en db
+        if(!empty($_SESSION["role"]) && !empty($_GET["idDelete"]) && $_SESSION['role'] == 1)
+        {
+            $userManager = new UserManager();
+            $userManager->delete($_GET["idDelete"]);
+        }
     }
 }

@@ -12,13 +12,17 @@ class Model
 
     public function hydrate(array $data)
     {
+        //print_r($data);
         $className = get_class($this);
+        //echo '<br>'.$className.'<br>';
         $articleObj = new $className;
+        //print_r($articleObj);
+        //print_r($data);
 
         foreach ($data as $key => $value)
         {
-            $method = 'set'.$key;
             $method = 'set'.ucfirst($key);
+            //echo '<br>'.$method;
             if (method_exists($articleObj, $method))
             {
                 $articleObj->$method($value);

@@ -27,6 +27,7 @@ class CategoryController extends Controller
                 $categoryManager = new CategoryManager();
                 $categoryManager->save($category);
             }
+            $this->redirectTo('Admin', 'default');
         }
     }
 }
