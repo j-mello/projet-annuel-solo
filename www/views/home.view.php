@@ -9,7 +9,7 @@ use secretshop\core\Helper;
 			<div class="d-flex flex-column text-center">
 				<h1 class="p-2">SECRET SHOP, LES OFFRES SECRETES</h1><br><br>
 				<p class="p-2">Des offres uniques</p> <br>
-				<p class="p-2"><a href='<?= Helper::getUrl('User','login') ?>' class="btn btn-warning" role="button">S'inscrire</a> <a href='<?= Helper::getUrl('User','register') ?>' class="btn btn-dark" role="button">Se connecter</a></p>
+				<p class="p-2"><a href='<?= Helper::getUrl('Home','register') ?>' class="btn btn-warning" role="button">S'inscrire</a> <a href='<?= Helper::getUrl('User','login') ?>' class="btn btn-dark" role="button">Se connecter</a></p>
 			</div>
 		</div>
 	</section>

@@ -86,5 +86,5 @@ INSERT INTO seshop160379_category (`id`, `category`) VALUES
 (4, 'Mode Femme');
 
 INSERT INTO seshop160379_user (`id`, `email`, `password`, `prenom`, `idRole`) VALUES
-(1, 'admin@admin.fr', '2ec10e4f7cd2159e7ea65d2454f68287ecf81251','admin', 1), -- Admin1
-(2, 'client@client.fr', 'd409bafbde368de4a06b71e2f3397f3ba0da0d0d','client', 2); -- Client1
+(1, 'admin@admin.fr', '5bf1cfa0b08af3919a06124aa18060ce279db496','admin', 1), -- Admin1!
+(2, 'client@client.fr', 'ce7b935f58a671ba31760a0ba573f9d3c914344e','client', 2); -- Client1!

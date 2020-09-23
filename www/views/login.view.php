@@ -2,6 +2,9 @@
 
 <div class='container-fluid'>
 <?php
+
+use secretshop\core\Helper;
+
 $this->addModal("form", $configFormUser); 
 ?>
 </div>
@@ -10,5 +13,5 @@ $this->addModal("form", $configFormUser);
 </br>
 <a href="#" class='btn btn-primary justify-content-center'>Mot de passe oublié</a>
 </br></br>
-<a href="#" class='btn btn-primary justify-content-center'>Retour à l'accueil</a>
+<a href="<?= Helper::getUrl('Home', 'default') ?>" class='btn btn-primary justify-content-center'>Retour à l'accueil</a>
 <br>

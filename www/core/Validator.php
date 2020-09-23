@@ -30,11 +30,12 @@ class Validator
                     }
                 } else {
                     $method = 'check' . ucfirst($key);
-                    echo "method => ".$method."<br/>";
+                    //echo "method => ".$method."<br/>";
                     if (method_exists(get_called_class(), $method)) {
                         if (!$this->$method($data[$key], $config)) {
                             echo "return false<br/>";
                             $errosMsg[$key] = $config["errorMsg"];
+                            print_r($errosMsg);
                         }
                     }
                 }
@@ -68,7 +69,7 @@ class Validator
 
     private function checkPassword($password)
     {
-        return preg_match('#(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,20}$#', $password);
+        return preg_match('#(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{4,50}$#', $password);
     }
 
     private function checkPasswordConfirm($passwordConfirm)
@@ -109,6 +110,7 @@ class Validator
         $imageFileType = strtolower(pathinfo($productImage,PATHINFO_EXTENSION));
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg")
             return false;
+        else return true;
     }
 
     private function uniq($data,$table)

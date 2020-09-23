@@ -54,10 +54,7 @@
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'default') ?>">Home</a></li>
-							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'login') ?>">Login</a></li>
-							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'register') ?>">Inscription</a></li>
-
-							<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 2 || $_SESSION['idRole'] == 3)): ?>
+							<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 2 || $_SESSION['idRole'] == 1)): ?>
 								<li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Boutique</a>
@@ -67,9 +64,12 @@
 									</ul>
 								</li>
 								<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'logout') ?>">Logout</a></li>
-								<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 3)): ?>
+								<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 1)): ?>
 									<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Admin', 'default') ?>">Admin</a></li>
 								<?php endif; ?>
+								<?php else: ?>
+									<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'login') ?>">Login</a></li>
+								<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'register') ?>">Inscription</a></li>
 							<?php endif; ?>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
