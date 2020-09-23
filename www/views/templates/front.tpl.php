@@ -55,14 +55,8 @@
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'default') ?>">Home</a></li>
 							<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 2 || $_SESSION['idRole'] == 1)): ?>
-								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-									aria-expanded="false">Boutique</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="category.html">La boutique</a></li>
-										<li class="nav-item"><a class="nav-link" href="cart.html">Mon panier</a></li>
-									</ul>
-								</li>
+								<li class="nav-item"><a class="nav-link" href="<?= Helper::getUrl('Shop', 'default') ?>">La boutique</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">Mon panier</a></li>
 								<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'logout') ?>">Logout</a></li>
 								<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 1)): ?>
 									<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Admin', 'default') ?>">Admin</a></li>

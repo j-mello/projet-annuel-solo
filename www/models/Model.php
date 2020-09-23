@@ -12,9 +12,9 @@ class Model
 
     public function hydrate($data, $files = [])
     {
-        /*echo "hydrate =>";
-        echo "<pre>";
-        print_r($data);
+        //echo "hydrate =>";
+        //echo "<pre>";
+        /*print_r($data);
         echo "</pre>";
         echo "<pre>";
         print_r($files);
@@ -22,19 +22,23 @@ class Model
         $className = get_class($this);
         //echo '<br>'.$className.'<br>';
         $articleObj = new $className;
-        //print_r($articleObj);
-        //print_r($data);
+        /*echo '<pre>';
+        print_r($articleObj);
+        echo '<br>';
+        print_r($data);
+        echo '</pre>';*/
         //die("HYDRATE");
 
         foreach ($data as $key => $value)
         {
             $method = 'set'.ucfirst($key);
-            //echo '<br>'.$method;
+            //echo '<br>'.$method.'<br>';
             if (method_exists($articleObj, $method))
             {
                 $articleObj->$method($value);
             }
         }
+        //die('test methode');
         foreach($files as $key => $config) {
             $path = "uploads/";
             $name = $_FILES[$key]["name"];

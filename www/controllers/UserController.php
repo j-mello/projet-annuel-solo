@@ -32,7 +32,7 @@ class UserController extends Controller
         $userManager = new UserManager();
         $user = $userManager->findBy($id);
         $configFormUser = User::showUserTable($user);
-        $myView = new View("shop/profile", "shop");
+        $myView = new View("profile", "front");
         $myView->assign('configFormUser', $configFormUser);
     }
 
@@ -98,13 +98,26 @@ class UserController extends Controller
                 // Enregistrement de l'utilisateur
                 $userArray = array_merge($_POST,array("token"=> Token::getToken()));
                 $user = new User();
+                echo '<pre>';
+                print_r($userArray);
+                echo '</pre>';
+
                 $user = $user->hydrate($userArray);
+                $user->setIdRole(3);
+                echo '<pre>';
+                print_r($user);
+                echo '</pre>';
+                //die('coucou');
                 $userManager = new UserManager();
                 $userManager-> save($user);
 
                 // Preparation et envoi de l'email
 
-                $this->sendMailAccountConfirmation($user->getEmail(), $user->getToken(),$user->getFirstName());
+                $this->sendMailAccountConfirmation($user->getEmail(), $user->getToken(),$user->getPrenom());
+
+                // En attente de la validation du mail
+                $_SESSION["newUser"] = 1;
+                $this->redirectTo("User", "registerConfirm");
 
             }
         }

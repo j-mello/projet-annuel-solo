@@ -57,12 +57,12 @@ class Manager
 
             $sql = "UPDATE ".$this->table." SET ".implode(",", $sqlUpdate)." WHERE id=:id;";
         }
-        //echo($sql);
-        //echo("<br/>");
-        //echo "<pre>";
-        //print_r($params);
-        //echo "</pre";
-        //die("coucou");
+        /*echo($sql);
+        echo("<br/>");
+        echo "<pre>";
+        print_r($params);
+        echo "</pre";
+        die("coucou");*/
         $this->connection->query($sql, $params);
     }
 

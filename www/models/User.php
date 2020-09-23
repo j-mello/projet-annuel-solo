@@ -33,7 +33,7 @@ class User extends Model
 
     public function setPrenom($prenom)
     {
-        $this->name=strtoupper(strip_tags($prenom));
+        $this->prenom=strtoupper(strip_tags($prenom));
     }
 
     public function setCreationDate($creationDate)

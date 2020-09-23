@@ -26,8 +26,10 @@ class Mail
             $this->email->SMTPAuth = true;
             $this->email->Username = MAIL_USER;
             $this->email->Password = MAIL_PWD;
-            $this->email->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $this->email->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $this->email->Port = 587;
+            $this->email->SMTPDebug = 1;
+            $this->email->CharSet = 'UTF-8';
 
             foreach ($settings as $key => $config)
             {
@@ -37,11 +39,16 @@ class Mail
                     $this->$method($config);
                 }
             }
+            echo "mail => ";
+            echo "<pre>";
+            print_r($this->email);
+            echo "</pre>";
             $this->email->send();
             echo 'Mail envoyé avec succès';
         } catch (Exception $e) {
             echo "Le message n'a pas été envoyé : {$this->email->ErrorInfo}";
         }
+        die("\nTEST ENVOIE MAIL");
     }
 
     private function addSender($sender)
@@ -69,7 +76,7 @@ class Mail
     try {
 
             //Recipients
-            $this->email->setFrom('ne-pas-repondre@secretshop.com', 'Administrateur HotelFactory');
+            $this->email->setFrom('ne-pas-repondre@secretshop.com', 'Administrateur Secretshop');
             $this->email->addAddress('secretshoptest@gmail.com', 'Joe User');     // Add a recipient
             // Name is optional
             // $mail->addReplyTo('info@example.com', 'Information');
@@ -90,7 +97,7 @@ class Mail
             echo 'Message has been sent';
         } catch
         (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$this->email->ErrorInfo}";
+            echo "Message could not be sent. Mailer Error : {$this->email->ErrorInfo}";
         }
     }
 }

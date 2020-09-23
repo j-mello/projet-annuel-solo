@@ -29,7 +29,7 @@ class RegisterForm
                 ],
                 "password"=>[
                     "type"=>"password",
-                    "placeholder"=>"Votre mot de passe",
+                    "placeholder"=>"Votre mot de passe (Au moins six lettres, dont une majuscule, un chiffre et un caractère spécial)",
                     "class"=>"form-control form-control-user",
                     "id"=>"",
                     "required"=>true,
@@ -53,7 +53,7 @@ class RegisterForm
                     "min-length"=>2,
                     "max-length"=>50,
                     "errorMsg"=>"Votre prénom doit faire entre 1 et 50 caractères et ne doit pas contenir de caractères spéciaux ni de nombres"
-                ],
+                ]/*,
                 "captcha"=>[
                     "type"=>"captcha",
                     "class"=>"form-control form-control-user",
@@ -61,7 +61,7 @@ class RegisterForm
                     "required"=>true,
                     "placeholder"=>"Veuillez saisir les caractères",
                     "errorMsg"=>"Captcha incorrect"
-                ],
+                ],*/
             ]
         ];
     }
