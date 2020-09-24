@@ -104,9 +104,9 @@ class UserController extends Controller
 
                 $user = $user->hydrate($userArray);
                 $user->setIdRole(3);
-                echo '<pre>';
-                print_r($user);
-                echo '</pre>';
+                //echo '<pre>';
+                //print_r($user);
+                //echo '</pre>';
                 //die('coucou');
                 $userManager = new UserManager();
                 $userManager-> save($user);

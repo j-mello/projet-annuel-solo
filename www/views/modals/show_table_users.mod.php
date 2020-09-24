@@ -1,4 +1,4 @@
-<table class='dashboard'>
+<table class='table table-hover'>
     <th>
         <?php   use secretshop\managers\RoleManager;
                 use secretshop\models\User;

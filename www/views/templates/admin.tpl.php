@@ -12,7 +12,8 @@ use secretshop\core\Helper;
   <meta name="description" content="">
   <meta name="author" content="">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-     <script src="https://kit.fontawesome.com/b6184cc755.js" crossorigin="anonymous"></script>
+ <script src="https://kit.fontawesome.com/b6184cc755.js" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
   <title>Secret Shop</title>
 
@@ -27,7 +28,7 @@ use secretshop\core\Helper;
             <li>Dashboard</li>
         </ul>
       </div>
-
+      </header>
 
       <div class="sidebar">
         <nav>
@@ -41,13 +42,12 @@ use secretshop\core\Helper;
             <li><a id="button-logout" href="<?= Helper::getUrl('Home','default') ?>"><i class="fas fa-sign-out-alt"></i></a></li>
           </ul>
         </nav>
-
       </div>
-    </header>
+    
 
-    <main class="dashboard-content">
+    <div id="container-dashboard">
       <?php include "views/".$this->view.".view.php";?>
-    </main>
+    </div>
 
 </body>
 </html>

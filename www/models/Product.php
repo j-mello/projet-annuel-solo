@@ -123,7 +123,7 @@ class Product extends Model
                 "id" => $product->getId(),
                 "name" => $product->getName(),
                 "slug" => $product->getSlug(),
-                "image" => $product->getImage(),
+                "image" => $product->getProductImage(),
                 "formerPrice" => $product->getFormerPrice(),
                 "price" => $product->getPrice(),
                 "resume" => $product->gettResume(),

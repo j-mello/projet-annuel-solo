@@ -21,7 +21,7 @@ class ProductAddForm {
                 "name"=>[
                     "type"=>"text",
                     "placeholder"=>"Nom du produit :",
-                    "class"=>"form-control",
+                    "class"=>"form-control dashbord-form",
                     "id"=>"",
                     "requiered"=>true,
                     "min-length"=>2,
@@ -31,7 +31,7 @@ class ProductAddForm {
                 "slug"=>[
                     "type"=>"text",
                     "placeholder"=>"Nom de la page du produit : (aucun espace)",
-                    "class"=>"form-control",
+                    "class"=>"form-control dashbord-form",
                     "id"=>"",
                     "requiered"=>true,
                     "min-length"=>2,
@@ -41,7 +41,7 @@ class ProductAddForm {
                 "formerPrice"=>[
                     "type"=>"number",
                     "placeholder"=>"Prix avant réduction :",
-                    "class"=>"form-control",
+                    "class"=>"form-control dashbord-form",
                     "id"=>"",
                     "min"=>0,
                     "required"=>true,
@@ -50,7 +50,7 @@ class ProductAddForm {
                 "price"=>[
                     "type"=>"number",
                     "placeholder"=>"Prix avec réduction :",
-                    "class"=>"form-control",
+                    "class"=>"form-control dashbord-form",
                     "id"=>"",
                     "min"=>0,
                     "required"=>true,
@@ -59,7 +59,7 @@ class ProductAddForm {
                 "resume"=>[
                     "type"=>"text",
                     "placeholder"=>"Description courte du produit :",
-                    "class"=>"form-control",
+                    "class"=>"form-control dashbord-form",
                     "id"=>"",
                     "min-length"=>3,
                     "max-length"=>255,
@@ -68,7 +68,7 @@ class ProductAddForm {
                 "description"=>[
                     "type"=>"text",
                     "placeholder"=>"Description détaillé du produit :",
-                    "class"=>"form-control",
+                    "class"=>"form-control dashbord-form",
                     "id"=>"",
                     "min-lenght"=>3,
                     "errorMsg"=>"Veuillez rééssayer, la description n'a pas pu être enregistrée"
@@ -76,6 +76,7 @@ class ProductAddForm {
                 "idCategory"=>[
                     "type"=>"select",
                     "placeholder"=>"Sélectionnez la catégorie :",
+                    "class"=>"form-control dashbord-form",
                     "elements"=>$categories,
                     "id"=>"",
                     "errorMsg"=>"Mauvaise catégorie sélectionnée"
@@ -83,7 +84,7 @@ class ProductAddForm {
                 "productImage"=>[
                     "type"=>"file",
                     "placeholder"=>"Image du produit :",
-                    "class"=>"form-control",
+                    "class"=>"form-control-file dashbord-form",
                     "id"=>"",
                     "accept"=>"image/jpeg,image/jpg,image/png",
                     "required"=>true,
