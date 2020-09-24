@@ -56,7 +56,7 @@
 							<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Home', 'default') ?>">Home</a></li>
 							<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 2 || $_SESSION['idRole'] == 1)): ?>
 								<li class="nav-item"><a class="nav-link" href="<?= Helper::getUrl('Shop', 'default') ?>">La boutique</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">Mon panier</a></li>
+								<li class="nav-item"><a class="nav-link" href="<?= Helper::getUrl('Cart', 'default') ?>">Mon panier</a></li>
 								<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('User', 'logout') ?>">Logout</a></li>
 								<?php if(isset($_SESSION['idRole']) && ($_SESSION['idRole'] == 1)): ?>
 									<li class="nav-item active"><a class="nav-link" href="<?= Helper::getUrl('Admin', 'default') ?>">Admin</a></li>
@@ -67,7 +67,7 @@
 							<?php endif; ?>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="<?= Helper::getUrl('Cart', 'default') ?>" class="cart"><span class="ti-bag"></span></a></li>
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>

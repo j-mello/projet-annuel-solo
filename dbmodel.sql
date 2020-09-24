@@ -51,20 +51,25 @@ CREATE TABLE seshop160379_product (
 
 );
 
--- Structure de la table cart
-
-CREATE TABLE seshop160379_cart (
+-- Structure de la table order
+CREATE TYPE process AS ENUM ('En cours', 'Complete','Annule');
+CREATE TABLE seshop160379_order (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    idClient INT NOT NULL,
-    FOREIGN KEY (idClient) REFERENCES seshop160379_user(id)
+    idUser INT NOT NULL,
+    total INT NOT NULL,
+    creationDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    statut process NOT NULL DEFAULT 'En cours',
+    FOREIGN KEY (idUser) REFERENCES seshop160379_user(id)
 )
 
--- Structure de la table cart_product
+-- Structure de la table order_products
 
-CREATE TABLE seshop160379_cart_product (
+CREATE TABLE seshop160379_order_products (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    idOrder INT NOT NULL,
     idProduct INT NOT NULL,
-    
+    quantity INT NOT NULL,
+    FOREIGN KEY (idOrder) REFERENCES seshop160379_order(id)
 )
 
 -- Structure de la table mail

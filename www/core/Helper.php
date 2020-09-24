@@ -47,4 +47,13 @@ class Helper
             Helper::redirectTo("Home", "default");
         }
     }
+
+    public static function productInCart($id)
+    {
+        foreach($_SESSION['panier'] as $unId) {
+            if ($unId == $id) 
+                return true;
+        }
+        return false;
+    }
 }

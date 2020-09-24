@@ -1,29 +1,28 @@
-<?php foreach($data["fields"] as $categorie => $elements): ?>
+<?php
+
+use secretshop\core\Helper;
+
+foreach($data["fields"] as $categorie => $elements): ?>
     <?php foreach($elements as $key => $fields): ?>
-        <div class="col-lg-4 col-md-6">
-            <div class="single-product">
-                    <img class="img-fluid" src="<?= $fields['image'] ?>" alt="" height="400px" width="400px">
-                <div class="product-details">
-                    <h6><?= $fields['name'] ?></h6>
-                    <p><?= $fields['resume'] ?></p>
-                    <div class="price">
-                        <h6><s><?= $fields['formerPrice'] ?> €</s></h6>
-                    </div>
-                    <div class="price">
-                        <h6><?= $fields['price'] ?></h6>
-                    </div>
-                    <div class="prd-bottom d-flex justify-content-around">
-                        <form action="#" method="POST">
-                            <input type="hidden" name="id" value="<?= $fields['id'] ?>">
-                            <input type="hidden" name="name" value="<?= $fields['name'] ?>">
-                            <input type="hidden" name="price" value="<?= $fields['price'] ?>">
-                            <button type="submit" class='primary-btn'>
-                                Ajouter au panier
-                            </button>
-                        </form>
-                    </div>
-                </div>
+        <div class="card mx-5 mb-5" style="width: 18rem;">
+            <img class="card-img-top" src="<?= $fields['image'] ?>" style="width: 18rem; height: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Nom du produit : <?= $fields['name'] ?></h5>
+                <p class="card-text">Description : <?= $fields['resume'] ?></p>
+                <p class="card-text">Ancien prix : <s><?= $fields['formerPrice'] ?> €</s></p>
+                <p class="card-text">Prix exclusif : <?= $fields['price'] ?></p>
+                <?php if (!Helper::productInCart($fields['id'])): ?>
+                <form action="<?= Helper::getUrl('Cart','addToCart') ?>" method="POST">
+                    <input type="hidden" name="id" value="<?= $fields['id'] ?>">
+                    <button type="submit" class='primary-btn'>
+                        Ajouter au panier
+                    </button>
+                </form>
+                <?php else:?>
+                    <span>Un seul exemplaire peut-être acheté.</span>
+                <?php endif; ?>
             </div>
         </div>
+
     <?php endforeach; ?>
 <?php endforeach; ?>

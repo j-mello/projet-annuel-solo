@@ -71,6 +71,7 @@ class UserController extends Controller
                         $_SESSION['idRole'] = $user[0]->getIdRole();
                         $_SESSION['prenom'] = $user[0]->getPrenom();
                         $_SESSION['token'] = Token::getToken();
+                        $_SESSION['panier'] = [];
                         $userManager = new UserManager();
                         $userManager->manageUserToken($_SESSION['id'], $_SESSION['token']);
                     } else {

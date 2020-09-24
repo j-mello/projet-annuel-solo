@@ -83,6 +83,18 @@
     controller: Shop
     action: default
 
+/cart:
+    controller: Cart
+    action: default
+
+/cart/add:
+    controller: Cart
+    action: addToCart
+
+/cart/remove:
+    controller: Cart
+    action: removeFromCart
+
 /lost:
     controller: Errors
     action: lost
