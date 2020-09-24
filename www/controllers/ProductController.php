@@ -3,6 +3,7 @@
 namespace secretshop\controllers;
 
 use secretshop\core\Controller;
+use secretshop\core\Helper;
 use secretshop\core\Validator;
 use secretshop\core\View;
 use secretshop\forms\ProductAddForm;
@@ -27,9 +28,6 @@ class ProductController extends Controller
             {
                 $productArray = $_POST;
                 $files = $_FILES;
-                echo "<pre>";
-                print_r($productArray);
-                echo "</pre>";
                 $product = new Product();
                 $product = $product->hydrate($productArray, $files);
                 $productManager = new ProductManager();
@@ -40,5 +38,34 @@ class ProductController extends Controller
             }
             $this->redirectTo('Admin', 'default');
         }
+    }
+
+    public function deleteProductAction()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $error = false;
+            if(!isset($_POST['id']))
+            {
+                $error = "Aucun id renseigné";
+            }
+            if (!$error) {
+                $id = $_POST['id'];
+                $productManager = new ProductManager();
+                $product = $productManager->find($id);
+                if ($product == null) {
+                    $error = "Ce produit n'existe pas";
+                }
+            }
+            if (!$error) {
+                $productManager->delete($id);
+            }
+
+            if ($error) 
+            {
+                die($error);
+            }
+        }
+        Helper::redirectTo('Admin','default');
     }
 }

@@ -8,6 +8,7 @@
     action: default
 
 #Inscription newsletter
+
 /home/mail:
     controller: Home
     action: email
@@ -98,3 +99,7 @@
 /lost:
     controller: Errors
     action: lost
+
+/product-delete:
+    controller: Product
+    action: deleteProduct

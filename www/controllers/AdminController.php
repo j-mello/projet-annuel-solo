@@ -7,7 +7,9 @@ use secretshop\core\View;
 use secretshop\forms\CategoryAddForm;
 use secretshop\forms\ProductAddForm;
 use secretshop\managers\CategoryManager;
+use secretshop\managers\ProductManager;
 use secretshop\managers\UserManager;
+use secretshop\models\Product;
 use secretshop\models\User;
 
 class AdminController extends Controller
@@ -35,7 +37,11 @@ class AdminController extends Controller
 
     public function deleteProductAction()
     {
-        echo 'Voilà';
+        $productManager = new ProductManager();
+        $products = $productManager->findAll();
+        $configTableProduct = Product::showProductTable($products);
+        $myView = new View('admin/deleteproduct', 'admin');
+        $myView->assign("configTableProduct", $configTableProduct);
     }
 
     public function listUserAction()
@@ -43,9 +49,6 @@ class AdminController extends Controller
         $userManager = new UserManager();
         $users = $userManager->findAll();
         $configTableUser = User::showUserTable($users);
-        /*echo '<pre>';
-        print_r($configTableUser);
-        echo '</pre>';*/
         $myView = new View('admin/listuser','admin');
         $myView->assign("configTableUser", $configTableUser);
     }

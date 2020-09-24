@@ -5,7 +5,7 @@ namespace secretshop\models;
 class Role extends Model
 {
     protected $id;
-    protected $caption;
+    protected $role;
 
     /* Setters */
 
@@ -14,9 +14,9 @@ class Role extends Model
         $this->id=$id;
     }
 
-    public function setCaption($caption)
+    public function setRole($role)
     {
-        $this->caption=$caption;
+        $this->role=$role;
     }
 
     /* Getters */
@@ -26,9 +26,9 @@ class Role extends Model
         return $this->id;
     }
 
-    public function getCaption()
+    public function getRole()
     {
-        return $this->caption;
+        return $this->role;
     }
 
     public static function showRoleTable($roles)
@@ -39,14 +39,14 @@ class Role extends Model
         {
             $tabRoles[] = [
                 "id" => $role->getId(),
-                "caption" => $role->getCaption()
+                "role" => $role->getRole()
             ];
         }
 
         $tab = [
             "colonnes"=>[
                 "Id",
-                "Caption"
+                "Role"
             ],
 
             "fields"=>[

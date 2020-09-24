@@ -128,7 +128,7 @@ class Product extends Model
                 "price" => $product->getPrice(),
                 "resume" => $product->gettResume(),
                 "description" => $product->getDescription(),
-                "idCategory" => $category->getId()
+                "categorie" => $category->getCategory()
             ];
 
         }

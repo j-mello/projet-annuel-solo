@@ -14,12 +14,6 @@ class ShopController extends Controller
         $productManager = new ProductManager;
         $products = $productManager->findAll();
         $productTable = Product::showProductTable($products);
-        /*echo'<pre>';
-        print_r($products);
-        echo '</pre> <br>';
-        echo '<pre>';
-        print_r($productTable);
-        echo '</pre>';*/
         $myView = new View('shop', 'front');
         $myView->assign('productTable', $productTable);
         

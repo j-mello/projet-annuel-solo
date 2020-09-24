@@ -1,5 +1,6 @@
 <?php
 	use secretshop\core\Helper;
+	use secretshop\forms\MailForm;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -102,7 +103,7 @@
 						<p>Stay update with our latest</p>
 						<div class="" id="mc_embed_signup">
 							<?php
-								$this->addModal("form", $configFormMail);
+								$this->addModal("form", MailForm::getForm());
 							?>
 						</div>
 					</div>
