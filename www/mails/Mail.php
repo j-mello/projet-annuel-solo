@@ -39,10 +39,10 @@ class Mail
                     $this->$method($config);
                 }
             }
-            echo "mail => ";
+            /*echo "mail => ";
             echo "<pre>";
             print_r($this->email);
-            echo "</pre>";
+            echo "</pre>";*/
             $this->email->send();
             echo 'Mail envoyé avec succès';
         } catch (Exception $e) {
