@@ -55,8 +55,11 @@ class UserController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == "POST")
         {
             $validator = new Validator();
-            $errors = $validator->checkForm($configFormUser, $_POST);
-            if(empty($errors))
+            if (!isset($_SESSION['errors'])) {
+                $_SESSION['errors'] = [];
+            }
+            $_SESSION['errors'][$configFormUser['config']['actionName']] = $validator->checkForm($configFormUser, $_POST, $_FILES);
+            if(empty($_SESSION['errors'][$configFormUser['config']['actionName']]))
             {
                 // Verification du password en le cryptant
                 $_POST['password'] = sha1($_POST['password']);
@@ -81,7 +84,8 @@ class UserController extends Controller
                     echo 'Veuillez valider votre mail';
                 }
             } else {
-                echo "Identifiant ou/et mot de passe incorrect";
+                Helper::redirectTo('User','login');
+                exit();
             }
         }
     }
@@ -178,7 +182,7 @@ class UserController extends Controller
 
     public function sendMailAccountConfirmation($key, $value, $name)
     {
-        $url = URL_HOST.Helper::getUrl("User","registerConfirm")."?key=".urlencode($key)."&token=".urlencode($value);
+        $url = 'http://secretshop.go.yj.fr'.Helper::getUrl("User","registerConfirm")."?key=".urlencode($key)."&token=".urlencode($value);
         $configMail = ConfirmAccountMail::getMail($key, $name, $url);
         $mail = new Mail();
         $mail->sendMail($configMail);
@@ -211,7 +215,7 @@ class UserController extends Controller
                     $token = Token::getToken();
                     $userManager = new UserManager();
                     $userManager->manageUserToken($result["id"],$token);
-                    $url = URL_HOST.Helper::getUrl("User","newPassword")."?id=".urlencode($result["id"])."&token=".urlencode($token);
+                    $url = 'http://secretshop.go.yj.fr'.Helper::getUrl("User","newPassword")."?id=".urlencode($result["id"])."&token=".urlencode($token);
                     $configMail = ForgotPasswordMail::getMail($_POST['email'],$url);
                     $mail = new Mail();
                     $mail->sendMail($configMail);
@@ -221,7 +225,7 @@ class UserController extends Controller
                 Helper::redirectTo('User','forgotPassword');
                 exit();
         }
-    }
+    } 
     
     public function newPasswordAction()
     {
@@ -262,7 +266,6 @@ class UserController extends Controller
                 $_SESSION['errors'] = [];
             }
             $_SESSION['errors'][$configFormUser['config']['actionName']] = $validator->checkForm($configFormUser, $_POST, $_FILES);
-            $errors = $validator->checkForm($configFormUser, $_POST);
             if (empty($_SESSION['errors'][$configFormUser['config']['actionName']]))
             {
                 $user = new User();
