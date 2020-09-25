@@ -28,7 +28,7 @@ class Mail
             $this->email->Password = MAIL_PWD;
             $this->email->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $this->email->Port = 587;
-            $this->email->SMTPDebug = 1;
+            $this->email->SMTPDebug = 0;
             $this->email->CharSet = 'UTF-8';
 
             foreach ($settings as $key => $config)
@@ -48,7 +48,7 @@ class Mail
         } catch (Exception $e) {
             echo "Le message n'a pas été envoyé : {$this->email->ErrorInfo}";
         }
-        die("\nTEST ENVOIE MAIL");
+        //die("\nTEST ENVOIE MAIL");
     }
 
     private function addSender($sender)

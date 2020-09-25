@@ -30,6 +30,7 @@ class Validator
                     ($config["required"] && !isset($data[$key]) && !isset($files[$key]))) {
                     return ["Tentative de hack !!!"];
                 }
+                $this->$key = isset($data[$key]) ? $data[$key] : $files[$key]['name'];
                 if ($config["type"] == "select") {
                     $found = false;
                     foreach($config["elements"] as $element) {

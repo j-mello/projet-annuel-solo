@@ -203,7 +203,7 @@ class UserController extends Controller
                 $_SESSION['errors'] = [];
             }
             $_SESSION['errors'][$configFormUser['config']['actionName']] = $validator->checkForm($configFormUser, $_POST, $_FILES);
-            if (empty($_SESSION['errors'][$configFormUser['config']['actionName']])
+            if (empty($_SESSION['errors'][$configFormUser['config']['actionName']]))
             {
                 $requete = new QueryBuilder(User::class, 'user');
                 $requete->querySelect(["id"]);
@@ -221,9 +221,11 @@ class UserController extends Controller
                     $mail->sendMail($configMail);
                 }
             }
-            else
+            else 
+            {
                 Helper::redirectTo('User','forgotPassword');
                 exit();
+            }
         }
     } 
     

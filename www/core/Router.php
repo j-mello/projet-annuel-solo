@@ -34,6 +34,7 @@ class Router
             // correspond à /users/(?P<id>\d+)
             if (preg_match("#$key$#i", $this->routeCalled, $params)) {
                 //$params = ['id' => 1]
+
                 Request::processPathParams($params);
                 $this->processRoute($route);
 
@@ -53,6 +54,7 @@ class Router
         // ]
         $c =  'secretshop\controllers\\'.ucfirst($routeConfig["controller"]."Controller");
         $a =  $routeConfig["action"]."Action";
+
         try {
             $controller = new $c();
         } catch( \Throwable $t) {

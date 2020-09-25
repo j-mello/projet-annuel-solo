@@ -60,7 +60,9 @@ if (isset($_SESSION["errors"][$data["config"]["actionName"]])) {
         echo("<li style='color: red; margin-left: -30px'>".$error."</li>");
     }
     echo "</ul>";
+    unset($_SESSION["errors"][$data["config"]["actionName"]]);
 } else if (isset($_SESSION["success"][$data["config"]["actionName"]])) {
     echo "<font color='green'>".$this->data["success"][$data["config"]["actionName"]]."</font>";
+    unset($_SESSION["success"][$data["config"]["actionName"]]);
 }
 ?>
