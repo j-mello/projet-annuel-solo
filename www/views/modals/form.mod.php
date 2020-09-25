@@ -54,13 +54,13 @@ enctype="<?= $data["config"]["enctype"]??"" ?>">
   <button class="btn btn-primary"><?= $data["config"]["submit"];?></button>
 </form>
 <?php
-if (isset($this->data["errors"][$data["config"]["actionName"]])) {
+if (isset($_SESSION["errors"][$data["config"]["actionName"]])) {
     echo "<ul>";
-    foreach ($this->data["errors"][$data["config"]["actionName"]] as $error) {
+    foreach ($_SESSION["errors"][$data["config"]["actionName"]] as $error) {
         echo("<li style='color: red; margin-left: -30px'>".$error."</li>");
     }
     echo "</ul>";
-} else if (isset($this->data["success"][$data["config"]["actionName"]])) {
+} else if (isset($_SESSION["success"][$data["config"]["actionName"]])) {
     echo "<font color='green'>".$this->data["success"][$data["config"]["actionName"]]."</font>";
 }
 ?>

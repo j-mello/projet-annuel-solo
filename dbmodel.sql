@@ -40,11 +40,11 @@ CREATE TABLE seshop160379_category(
 CREATE TABLE seshop160379_product (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL UNIQUE,
-    slug VARCHAR(100) NOT NULL UNIQUE,
+    slug VARCHAR(100) DEFAULT NULL UNIQUE,
     formerPrice INT NOT NULL,
     price INT NOT NULL,
     resume VARCHAR(250) NOT NULL,
-    description TEXT NOT NULL,
+    description TEXT DEFAULT NULL,
     idCategory INT NOT NULL,
     productImage VARCHAR(250) NOT NULL UNIQUE,
     FOREIGN KEY (idCategory) REFERENCES seshop160379_category(id)

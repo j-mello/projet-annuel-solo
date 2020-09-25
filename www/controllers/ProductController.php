@@ -24,8 +24,11 @@ class ProductController extends Controller
             if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
                 $validator = new Validator();
-                $errors = $validator->checkForm($configFormAddCategory, $_POST);
-                if (empty($errors))
+                if (!isset($_SESSION['errors'])) {
+                    $_SESSION['errors'] = [];
+                }
+                $_SESSION['errors'][$configFormAddCategory['config']['actionName']] = $validator->checkForm($configFormAddCategory, $_POST, $_FILES);
+                if (empty($_SESSION['errors'][$configFormAddCategory['config']['actionName']]))
                 {
                     $productArray = $_POST;
                     $files = $_FILES;
@@ -34,10 +37,10 @@ class ProductController extends Controller
                     $productManager = new ProductManager();
                     $productManager->save($product);
                 } else {
-                    print_r($errors);
-                    die ("ERRORS");
+                    Helper::redirectTo('Admin','addProduct');
+                    exit();
                 }
-                $this->redirectTo('Admin', 'default');
+            $this->redirectTo('Admin', 'default');
             }
         } else {
             Helper::redirectTo('Home','default');

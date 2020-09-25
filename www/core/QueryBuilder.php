@@ -65,6 +65,8 @@ class QueryBuilder extends Manager
 //        return $this;
 //    }
 
+
+
     public function update($table)
     {
         $this->table = $table;

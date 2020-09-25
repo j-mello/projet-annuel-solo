@@ -24,7 +24,7 @@ class ProductAddForm {
                     "placeholder"=>"Nom du produit :",
                     "class"=>"form-control dashbord-form",
                     "id"=>"",
-                    "requiered"=>true,
+                    "required"=>true,
                     "min-length"=>2,
                     "max-length"=>50,
                     "errorMsg"=>"Le nom du produit doit faire entre 1 et 50 caractères et ne doit pas contenir de caractères spéciaux."
@@ -62,6 +62,7 @@ class ProductAddForm {
                     "placeholder"=>"Description courte du produit :",
                     "class"=>"form-control dashbord-form",
                     "id"=>"",
+                    "required"=>false,
                     "min-length"=>3,
                     "max-length"=>255,
                     "errorMsg"=>"La description doit avoir 255 caractères maximum."
@@ -78,6 +79,7 @@ class ProductAddForm {
                     "type"=>"select",
                     "placeholder"=>"Sélectionnez la catégorie :",
                     "class"=>"form-control dashbord-form",
+                    "required"=>false,
                     "elements"=>$categories,
                     "id"=>"",
                     "errorMsg"=>"Mauvaise catégorie sélectionnée"
@@ -87,7 +89,7 @@ class ProductAddForm {
                     "placeholder"=>"Image du produit :",
                     "class"=>"form-control-file dashbord-form",
                     "id"=>"",
-                    "accept"=>"image/jpeg,image/jpg,image/png",
+                    "accept"=>["image/jpeg","image/jpg","image/png"],
                     "required"=>true,
                     "errorMsg"=>"Le fichier ne correspond à une image de type jpeg ou png."
                 ],

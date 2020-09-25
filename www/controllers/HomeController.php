@@ -3,6 +3,7 @@
 namespace secretshop\controllers;
 
 use secretshop\core\Controller;
+use secretshop\core\Helper;
 use secretshop\core\Validator;
 use secretshop\core\View;
 use secretshop\forms\MailForm;
@@ -32,8 +33,11 @@ class HomeController extends Controller
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $validator = new Validator();
-            $errors = $validator->checkForm($configFormMail, $_POST);
-            if(empty($errors))
+            if (!isset($_SESSION['errors'])) {
+                $_SESSION['errors'] = [];
+            }
+            $_SESSION['errors'][$configFormMail['config']['actionName']] = $validator->checkForm($configFormMail, $_POST, $_FILES);
+            if(empty($_SESSION['errors'][$configFormMail['config']['actionName']]))
             {
                 $mailArray = $_POST;
                 $mail = new Mail();
@@ -41,6 +45,9 @@ class HomeController extends Controller
 
                 $mailManager = new MailManager();
                 $mailManager->save($mail);
+            } else {
+                Helper::redirectTo('Home', 'default');
+                exit();
             }
             $this->redirectTo('Home','default');
         }

@@ -19,14 +19,20 @@ class CategoryController extends Controller
             if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
                 $validator = new Validator();
-                $errors = $validator->checkForm($configFormAddCategory, $_POST);
-                if (empty($errors))
+                if (!isset($_SESSION['errors'])) {
+                    $_SESSION['errors'] = [];
+                }
+                $_SESSION['errors'][$configFormAddCategory['config']['actionName']] = $validator->checkForm($configFormAddCategory, $_POST, $_FILES);
+                if (empty($_SESSION['errors'][$configFormAddCategory['config']['actionName']]))
                 {
                     $categoryArray = $_POST;
                     $category = new Category();
                     $category = $category->hydrate($categoryArray);
                     $categoryManager = new CategoryManager();
                     $categoryManager->save($category);
+                } else {
+                    $this->redirectTo('Admin', 'addCategory');
+                    exit();
                 }
                 $this->redirectTo('Admin', 'default');
             }

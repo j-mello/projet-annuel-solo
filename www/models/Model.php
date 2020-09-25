@@ -12,9 +12,9 @@ class Model
 
     public function hydrate($data, $files = [])
     {
-        //echo "hydrate =>";
-        //echo "<pre>";
-        /*print_r($data);
+        /*echo "hydrate =>";
+        echo "<pre>";
+        print_r($data);
         echo "</pre>";
         echo "<pre>";
         print_r($files);
@@ -22,11 +22,9 @@ class Model
         $className = get_class($this);
         //echo '<br>'.$className.'<br>';
         $articleObj = new $className;
-        /*echo '<pre>';
-        print_r($articleObj);
-        echo '<br>';
-        print_r($data);
-        echo '</pre>';*/
+        //echo '<pre>';
+        //print_r($articleObj);
+        //echo '</pre>';
         //die("HYDRATE");
 
         foreach ($data as $key => $value)

@@ -93,8 +93,12 @@ class UserController extends Controller
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $validator = new Validator();
-            $errors = $validator->checkForm($configFormUser, $_POST);
-            if(empty($errors))
+            
+            if (!isset($_SESSION['errors'])) {
+                $_SESSION['errors'] = [];
+            }
+            $_SESSION['errors'][$configFormUser['config']['actionName']] = $validator->checkForm($configFormUser, $_POST, $_FILES);
+            if(empty($_SESSION['errors'][$configFormUser['config']['actionName']]))
             {
                 // Enregistrement de l'utilisateur
                 $userArray = array_merge($_POST,array("token"=> Token::getToken()));
@@ -114,6 +118,9 @@ class UserController extends Controller
                 $_SESSION["newUser"] = 1;
                 $this->redirectTo("User", "registerConfirm");
 
+            } else {
+                Helper::redirectTo('Home', 'register');
+                exit();
             }
         }
     }
@@ -188,8 +195,11 @@ class UserController extends Controller
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
             $validator = new Validator();
-            $errors = $validator->checkForm($configFormUser, $_POST);
-            if (empty($errors))
+            if (!isset($_SESSION['errors'])) {
+                $_SESSION['errors'] = [];
+            }
+            $_SESSION['errors'][$configFormUser['config']['actionName']] = $validator->checkForm($configFormUser, $_POST, $_FILES);
+            if (empty($_SESSION['errors'][$configFormUser['config']['actionName']])
             {
                 $requete = new QueryBuilder(User::class, 'user');
                 $requete->querySelect(["id"]);
@@ -208,9 +218,11 @@ class UserController extends Controller
                 }
             }
             else
-                print_r($errors);
+                Helper::redirectTo('User','forgotPassword');
+                exit();
         }
     }
+    
     public function newPasswordAction()
     {
         Helper::checkDisconnected();
@@ -246,8 +258,12 @@ class UserController extends Controller
         if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_SESSION["idPassword"]))
         {
             $validator = new Validator();
+            if (!isset($_SESSION['errors'])) {
+                $_SESSION['errors'] = [];
+            }
+            $_SESSION['errors'][$configFormUser['config']['actionName']] = $validator->checkForm($configFormUser, $_POST, $_FILES);
             $errors = $validator->checkForm($configFormUser, $_POST);
-            if (empty($errors))
+            if (empty($_SESSION['errors'][$configFormUser['config']['actionName']]))
             {
                 $user = new User();
                 $user->setPassword($_POST["password"]);
@@ -261,9 +277,8 @@ class UserController extends Controller
             }
             else
             {
-                print_r($errors);
-                $myView = new View("newPassword", "front");
-                $myView->assign("configFormUser", $configFormUser);
+                Helper::redirectTo('Home','default');
+                exit();
             }
         }
     }

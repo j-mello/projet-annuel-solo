@@ -58,9 +58,6 @@ class CartController extends Controller
         } else {
             Helper::redirectTo('Home','default');
         }
-
-
-
     }
 
     public function removeFromCartAction()

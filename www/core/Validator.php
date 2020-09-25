@@ -5,16 +5,29 @@ use function Sodium\compare;
 
 class Validator
 {
-    public function checkForm($configForm, $data)
+    public function checkForm($configForm, $data, $files = [])
     {
         $errosMsg = [];
 
-        if (count($configForm["fields"]) == count($data)) {
+        /*echo "configForm => ";
+        echo "<pre>";
+        print_r($configForm);
+        echo "</pre>";
+        echo "data => ";
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+        echo "files => ";
+        echo "<pre>";
+        print_r($files);
+        echo "</pre>";*/
+
+        if (count($configForm["fields"]) == count($data)+count($files)) {
             foreach ($configForm["fields"] as $key => $config) {
-                $this->$key = $data[$key];
                 //Vérifie que l'on a bien les champs attendus
                 //Vérifier les required
-                if (!array_key_exists($key, $data) || ($config["required"] && empty($data[$key]))) {
+                if ((!array_key_exists($key, $data) && !array_key_exists($key, $files)) || 
+                    ($config["required"] && !isset($data[$key]) && !isset($files[$key]))) {
                     return ["Tentative de hack !!!"];
                 }
                 if ($config["type"] == "select") {
@@ -27,15 +40,24 @@ class Validator
                     }
                     if (!$found) {
                         $errosMsg[$key] = $config["errorMsg"];
-                    }
+                    } 
                 } else {
                     $method = 'check' . ucfirst($key);
                     //echo "method => ".$method."<br/>";
                     if (method_exists(get_called_class(), $method)) {
-                        if (!$this->$method($data[$key], $config)) {
-                            echo "return false<br/>";
+                        if (!$this->$method(($config["type"] != "file" ? $data[$key] : $files[$key]), $config)) {
+                            //echo "return false<br/>";
                             $errosMsg[$key] = $config["errorMsg"];
-                            print_r($errosMsg);
+                            //print_r($errosMsg);
+                        }
+                    }
+                    $method = 'check' . ucfirst($config['type']);
+                    //echo "method2 => ".$method."<br/>";
+                    if (method_exists(get_called_class(), $method)) {
+                        if (!$this->$method(($config["type"] != "file" ? $data[$key] : $files[$key]), $config)) {
+                            //echo "return false<br/>";
+                            $errosMsg[$key] = $config["errorMsg"];
+                            //print_r($errosMsg);
                         }
                     }
                 }
@@ -53,6 +75,7 @@ class Validator
 
     private function checkName($name)
     {
+        //echo "name => ".$name."<br/>";
         if (!preg_match("#^[\p{Latin}' -]+$#u", $name) || strlen($name) > 100)
             return false;
         return true;
@@ -105,12 +128,14 @@ class Validator
         return preg_match('#^[A-Z][a-zA-Z\s]{3,30}#',$category);
     }
 
-    private function checkProductImage($productImage)
+    private function checkFile($file,$field)
     {
-        $imageFileType = strtolower(pathinfo($productImage,PATHINFO_EXTENSION));
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg")
-            return false;
-        else return true;
+        foreach($field['accept'] as $mime) {
+            if ($file['type'] == $mime) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private function uniq($data,$table)
