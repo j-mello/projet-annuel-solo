@@ -13,21 +13,25 @@ class CategoryController extends Controller
 {
     public function addAction()
     {
-        //Helper::checkAdmin()
-        $configFormAddCategory = CategoryAddForm::getForm();
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        if ($_SESSION['idRole'] == 1)
         {
-            $validator = new Validator();
-            $errors = $validator->checkForm($configFormAddCategory, $_POST);
-            if (empty($errors))
+            $configFormAddCategory = CategoryAddForm::getForm();
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
-                $categoryArray = $_POST;
-                $category = new Category();
-                $category = $category->hydrate($categoryArray);
-                $categoryManager = new CategoryManager();
-                $categoryManager->save($category);
+                $validator = new Validator();
+                $errors = $validator->checkForm($configFormAddCategory, $_POST);
+                if (empty($errors))
+                {
+                    $categoryArray = $_POST;
+                    $category = new Category();
+                    $category = $category->hydrate($categoryArray);
+                    $categoryManager = new CategoryManager();
+                    $categoryManager->save($category);
+                }
+                $this->redirectTo('Admin', 'default');
             }
-            $this->redirectTo('Admin', 'default');
+        } else {
+            Helper::redirectTo('Home','default');
         }
     }
 }

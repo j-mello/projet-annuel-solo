@@ -22,7 +22,7 @@ class Helper
 
     public static function checkRole($role)
     {
-        if($_SESSION['role'] != $role)
+        if($_SESSION['idRole'] != $role)
         header('Location: /lost');
     }
 
@@ -34,7 +34,7 @@ class Helper
 
     public static function checkAdmin()
     {
-        if($_SESSION['role']!=1)
+        if($_SESSION['idRole']!= 1)
         {
             Helper::redirectTo("Home","default");
         }
@@ -42,7 +42,7 @@ class Helper
 
     public static function checkGuest()
     {
-        if($_SESSION['role']!= 1 || $_SESSION['role']!= 2)
+        if($_SESSION['idRole']!= 1 || $_SESSION['idRole']!= 2)
         {
             Helper::redirectTo("Home", "default");
         }

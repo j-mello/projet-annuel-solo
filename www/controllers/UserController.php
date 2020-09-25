@@ -99,16 +99,10 @@ class UserController extends Controller
                 // Enregistrement de l'utilisateur
                 $userArray = array_merge($_POST,array("token"=> Token::getToken()));
                 $user = new User();
-                echo '<pre>';
-                print_r($userArray);
-                echo '</pre>';
 
                 $user = $user->hydrate($userArray);
                 $user->setIdRole(3);
-                //echo '<pre>';
-                //print_r($user);
-                //echo '</pre>';
-                //die('coucou');
+
                 $userManager = new UserManager();
                 $userManager-> save($user);
 

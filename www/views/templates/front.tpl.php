@@ -32,12 +32,14 @@
 	<link rel="stylesheet" href="script/css/front/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="script/css/front/magnific-popup.css">
 	<link rel="stylesheet" href="script/css/front/main.css">
+	<link rel="stylesheet" href="script/css/front/style.css">
 	
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
+<script src="https://js.stripe.com/v3/"></script>
 	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">

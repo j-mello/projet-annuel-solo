@@ -12,6 +12,7 @@ class CategoryAddForm
                 "method"=>"POST",
                 "action"=>Helper::getUrl("Category", "add"),
                 "class"=>"Category",
+                "actionName"=>'categoryAdd',
                 "id"=>"formRegisterProduct",
                 "submit"=>"Ajoutez la catégorie",
             ],

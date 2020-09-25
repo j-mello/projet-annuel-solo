@@ -13,6 +13,7 @@ class MailForm
                 "method"=>"POST",
                 "action"=>Helper::getUrl('Home', 'email'),
                 "class"=>"form-inline",
+                "actionName"=>'mail',
                 "id"=>"formRegisterMail",
                 "submit"=>"S'inscrire"
             ],

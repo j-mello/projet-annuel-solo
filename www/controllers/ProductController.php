@@ -16,56 +16,65 @@ class ProductController extends Controller
 
     public function addAction()
     {
-        //Helper::checkAdmin()
-        $categoriesManager = new CategoryManager();
-        $categories = $categoriesManager->getSelect();
-        $configFormAddCategory = ProductAddForm::getForm($categories);
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        if ($_SESSION['idRole'] == 1)
         {
-            $validator = new Validator();
-            $errors = $validator->checkForm($configFormAddCategory, $_POST);
-            if (empty($errors))
+            $categoriesManager = new CategoryManager();
+            $categories = $categoriesManager->getSelect();
+            $configFormAddCategory = ProductAddForm::getForm($categories);
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
-                $productArray = $_POST;
-                $files = $_FILES;
-                $product = new Product();
-                $product = $product->hydrate($productArray, $files);
-                $productManager = new ProductManager();
-                $productManager->save($product);
-            } else {
-                print_r($errors);
-                die ("ERRORS");
+                $validator = new Validator();
+                $errors = $validator->checkForm($configFormAddCategory, $_POST);
+                if (empty($errors))
+                {
+                    $productArray = $_POST;
+                    $files = $_FILES;
+                    $product = new Product();
+                    $product = $product->hydrate($productArray, $files);
+                    $productManager = new ProductManager();
+                    $productManager->save($product);
+                } else {
+                    print_r($errors);
+                    die ("ERRORS");
+                }
+                $this->redirectTo('Admin', 'default');
             }
-            $this->redirectTo('Admin', 'default');
+        } else {
+            Helper::redirectTo('Home','default');
         }
     }
 
     public function deleteProductAction()
     {
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        if ($_SESSION['idRole'] == 1)
         {
-            $error = false;
-            if(!isset($_POST['id']))
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
-                $error = "Aucun id renseigné";
-            }
-            if (!$error) {
-                $id = $_POST['id'];
-                $productManager = new ProductManager();
-                $product = $productManager->find($id);
-                if ($product == null) {
-                    $error = "Ce produit n'existe pas";
+                $error = false;
+                if(!isset($_POST['id']))
+                {
+                    $error = "Aucun id renseigné";
+                }
+                if (!$error) {
+                    $id = $_POST['id'];
+                    $productManager = new ProductManager();
+                    $product = $productManager->find($id);
+                    if ($product == null) {
+                        $error = "Ce produit n'existe pas";
+                    }
+                }
+                if (!$error) {
+                    $productManager->delete($id);
+                }
+
+                if ($error) 
+                {
+                    die($error);
                 }
             }
-            if (!$error) {
-                $productManager->delete($id);
-            }
-
-            if ($error) 
-            {
-                die($error);
-            }
+            Helper::redirectTo('Admin','default');
+        } else {
+            Helper::redirectTo('Home','default');
         }
-        Helper::redirectTo('Admin','default');
     }
 }

@@ -14,6 +14,7 @@ class LoginForm
                 "action"=>Helper::getUrl("User",'login'),
                 "class"=>'User',
                 "id"=>"formLoginUser",
+                "actionName"=>'login',
                 "submit"=>"Se connecter",
             ],
             "fields"=>[

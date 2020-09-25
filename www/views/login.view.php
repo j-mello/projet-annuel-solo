@@ -11,7 +11,7 @@ $this->addModal("form", $configFormUser);
 
 
 </br>
-<a href="#" class='btn btn-primary justify-content-center'>Mot de passe oublié</a>
+<a href="<?= Helper::getUrl('User','forgotPassword')?>" class='btn btn-primary justify-content-center'>Mot de passe oublié</a>
 </br></br>
 <a href="<?= Helper::getUrl('Home', 'default') ?>" class='btn btn-primary justify-content-center'>Retour à l'accueil</a>
 <br>

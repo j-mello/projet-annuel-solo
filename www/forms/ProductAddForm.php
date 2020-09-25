@@ -12,6 +12,7 @@ class ProductAddForm {
                 "method"=>"POST",
                 "action"=>Helper::getUrl("Product", "add"),
                 "class"=>"Product",
+                "actionName"=> 'productAdd',
                 "id"=>"",
                 "submit"=>"Ajoutez le produit",
                 "enctype"=>"multipart/form-data"
@@ -28,7 +29,7 @@ class ProductAddForm {
                     "max-length"=>50,
                     "errorMsg"=>"Le nom du produit doit faire entre 1 et 50 caractères et ne doit pas contenir de caractères spéciaux."
                 ],
-                "slug"=>[
+                /*"slug"=>[
                     "type"=>"text",
                     "placeholder"=>"Nom de la page du produit : (aucun espace)",
                     "class"=>"form-control dashbord-form",
@@ -37,7 +38,7 @@ class ProductAddForm {
                     "min-length"=>2,
                     "max-length"=>50,
                     "errorMsg"=>"L'adresse ne doit pas comprendre d'espace et de caractères spéciaux."
-                ],
+                ],*/
                 "formerPrice"=>[
                     "type"=>"number",
                     "placeholder"=>"Prix avant réduction :",
@@ -64,7 +65,7 @@ class ProductAddForm {
                     "min-length"=>3,
                     "max-length"=>255,
                     "errorMsg"=>"La description doit avoir 255 caractères maximum."
-                ],
+                ],/*
                 "description"=>[
                     "type"=>"text",
                     "placeholder"=>"Description détaillé du produit :",
@@ -72,7 +73,7 @@ class ProductAddForm {
                     "id"=>"",
                     "min-lenght"=>3,
                     "errorMsg"=>"Veuillez rééssayer, la description n'a pas pu être enregistrée"
-                ],
+                ],*/
                 "idCategory"=>[
                     "type"=>"select",
                     "placeholder"=>"Sélectionnez la catégorie :",

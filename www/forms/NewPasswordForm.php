@@ -13,6 +13,7 @@ class NewPasswordForm
                 "method"=>"POST",
                 "action"=>Helper::getUrl("USer","newPassword"),
                 "class"=>"User",
+                "actionName"=>'newPassword',
                 "id"=>"formForgotPassword",
                 "submit"=>"Valider"
             ],

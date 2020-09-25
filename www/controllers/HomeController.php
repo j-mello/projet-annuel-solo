@@ -36,13 +36,9 @@ class HomeController extends Controller
             if(empty($errors))
             {
                 $mailArray = $_POST;
-                //var_dump($mailArray);
-                //echo '<br>';
-                //echo $mailArray['email'];
-                //echo '<br>';
                 $mail = new Mail();
                 $mail = $mail->hydrate($mailArray);
-                //var_dump($mail);
+
                 $mailManager = new MailManager();
                 $mailManager->save($mail);
             }

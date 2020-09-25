@@ -103,3 +103,15 @@
 /product-delete:
     controller: Product
     action: deleteProduct
+
+/checkout:
+    controller: Checkout
+    action: default
+
+/checkout/payment:
+    controller: Checkout
+    action: payment
+
+/checkout/success:
+    controller: Checkout
+    action: success

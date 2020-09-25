@@ -3,11 +3,12 @@
 namespace secretshop\controllers;
 
 use secretshop\core\Controller;
+use secretshop\core\View;
 
 class ErrorsController extends Controller
 {
     public function lostAction()
     {
-        echo 'On est perdu !';
+        $view = new View('lost','front');
     }
 }
